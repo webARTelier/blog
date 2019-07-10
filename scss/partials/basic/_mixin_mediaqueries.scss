@@ -1,0 +1,161 @@
+
+
+
+// ================================================================
+
+// MEDIA QUERIES
+
+// ================================================================
+
+
+
+// single viewports
+// ----------------
+@mixin vp-tiny {
+  @media (max-width: #{bp(tiny)}) {
+    @content;
+  }
+}
+
+@mixin vp-small {
+  @media (min-width: #{bp(tiny) + 1}) and (max-width: #{bp(small)}) {
+    @content;
+  }
+}
+
+@mixin vp-medium {
+  @media (min-width: #{bp(small) + 1}) and (max-width: #{bp(medium)}) {
+    @content;
+  }
+}
+
+@mixin vp-large {
+  @media (min-width: #{bp(medium) + 1}) and (max-width: #{bp(large)}) {
+    @content;
+  }
+}
+
+@mixin vp-huge {
+  @media (min-width: #{bp(large) + 1}) {
+    @content;
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// viewports 'from ... to'
+// -----------------------
+@mixin vp-tiny-small {
+  @media (max-width: #{bp(small)}) {
+    @content;
+  }
+}
+
+@mixin vp-tiny-medium {
+  @media (max-width: #{bp(medium)}) {
+    @content;
+  }
+}
+
+@mixin vp-tiny-large {
+  @media (max-width: #{bp(large)}) {
+    @content;
+  }
+}
+
+@mixin vp-small-medium {
+  @media (min-width: #{bp(tiny) + 1}) and (max-width: #{bp(medium)}) {
+    @content;
+  }
+}
+
+@mixin vp-small-large {
+  @media (min-width: #{bp(tiny) + 1}) and (max-width: #{bp(large)}) {
+    @content;
+  }
+}
+
+@mixin vp-medium-large {
+  @media (min-width: #{bp(small) + 1}) and (max-width: #{bp(large)}) {
+    @content;
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// viewports '... and up'
+// ---------------------
+@mixin vp-small-up {
+  @media (min-width: #{bp(tiny) + 1}) {
+    @content;
+  }
+}
+
+@mixin vp-medium-up {
+  @media (min-width: #{bp(small) + 1}) {
+    @content;
+  }
+}
+
+@mixin vp-large-up {
+  @media (min-width: #{bp(medium) + 1}) {
+    @content;
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// ultra viewport: viewport size > 1920px
+// OR viewport size = 1920px AND resolution >= 120 dpi
+// ---------------------------------------------------
+@mixin vp-ultra {
+  @media (min-width: #{bp(ultra) + 1}), (min-width: #{bp(ultra)}) and (min-resolution: 120dpi) {
+    @content;
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// special viewport: mobile device in landscape orientation
+// --------------------------------------------------------
+@mixin vp-mobile-landscape {
+  @media (max-width: #{bp(small)}) and (orientation: landscape) {
+    @content;
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// special viewports for main navigation
+// -------------------------------------
+@mixin vp-nav-mobile {
+  @media (max-width: #{bp('navigation')}) {
+    @content;
+  }
+}
+
+@mixin vp-nav-desktop {
+  @media (min-width: #{bp('navigation') + 1}) {
+    @content;
+  }
+}

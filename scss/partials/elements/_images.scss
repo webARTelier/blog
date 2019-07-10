@@ -1,0 +1,32 @@
+
+
+
+// ================================================================
+
+// DEFAULT IMAGE STYLINGS
+
+// ================================================================
+
+
+
+img {
+  display: block;
+  flex: none;
+}
+
+
+
+// make images fit their container with object-fit
+// -----------------------------------------------
+@mixin fit($fit, $pos-x: center, $pos-y: center) {
+  @include absolute(top 0 left 0);
+  @include size(100%);
+
+  object-fit: $fit;
+  object-position: $pos-x $pos-y;
+
+
+  // style for IE polyfill
+  // ---------------------
+  font-family: 'object-fit: #{$fit}; object-position: #{$pos-x $pos-y}';
+}

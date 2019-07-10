@@ -1,0 +1,83 @@
+
+
+
+// ================================================================
+
+// MAIN SCSS FILE
+// --------------
+// this file is for concatenating scss partials only.
+// there should be no stlye declaration inside this file!
+
+// ================================================================
+
+
+
+// normalize browser behaviours
+// ----------------------------
+@import 'partials/basic/_normalize';
+@import 'partials/basic/_normalize_fee';
+
+
+
+// get helper mixins
+// -----------------
+@import 'partials/basic/mixin_mediaqueries';
+@import 'partials/basic/mixin_grid';
+@import 'partials/basic/mixin_helpers';
+@import 'partials/basic/mixin_respfont';
+
+
+
+// project settings, colors & fonts
+// --------------------------------
+@import 'partials/settings';
+@import 'partials/colors';
+@import 'partials/typo';
+@import 'partials/animations';
+
+
+
+// navigation styles
+// -----------------
+@import 'partials/elements/navigation';
+
+
+
+// get element styles
+// ------------------
+@import 'partials/elements/content';
+@import 'partials/elements/buttons';
+@import 'partials/elements/links';
+@import 'partials/elements/lists';
+@import 'partials/elements/tables';
+@import 'partials/elements/images';
+
+@import 'partials/elements/gallery';
+@import 'partials/elements/tabs';
+@import 'partials/elements/post';
+@import 'partials/elements/comments';
+@import 'partials/elements/accordion';
+@import 'partials/elements/footer';
+
+@import 'partials/elements/forms_inputs';
+@import 'partials/elements/forms_inputs_selects';
+@import 'partials/elements/forms_inputs_radiocheck';
+@import 'partials/elements/forms_inputs_invalid';
+@import 'partials/elements/forms_inputs_units';
+@import 'partials/elements/forms_layout';
+
+@import 'partials/elements/pagination';
+@import 'partials/elements/totop';
+@import 'partials/elements/overlays_page';
+@import 'partials/elements/overlays_images';
+
+@import 'partials/elements/tooltips';
+@import 'partials/elements/modals';
+@import 'partials/elements/spinner';
+
+
+
+// get vendor plugin styles
+// ------------------------
+@import 'partials/vendor/smartphoto/smartphoto';
+@import 'partials/vendor/cookieconsent/cookieconsent';

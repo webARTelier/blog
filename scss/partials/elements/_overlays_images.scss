@@ -1,0 +1,79 @@
+
+
+
+// ================================================================
+
+// HOVER OVERLAYS FOR IMAGES
+
+// ================================================================
+
+
+
+.c-overlayImg {
+  display: inline-block;
+
+
+
+  // overlay background
+  // ------------------
+  &:before {
+    @include absolute(top 0 right 0 bottom 0 left 0);
+
+    z-index: 1;
+
+    opacity: 0;
+    content: '';
+    background-color: rgba($color-red, 0.8);
+
+    transition: all var(--anim-dur) var(--anim-ease);
+  }
+
+
+
+  // overlay icon
+  // ------------
+  &:after {
+    @include absolute(top 0 right 0 bottom 0 left 0);
+
+    z-index: 2;
+
+    opacity: 0;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 3em;
+    color: var(--color-main);
+  }
+
+  &:hover {
+
+    &:before,
+    &:after {
+      opacity: 1;
+    }
+  }
+
+
+
+  // choose your icon
+  // ----------------
+  &--zoom {
+
+    &:after {
+      content: "\2315";
+      transform: scaleX(-1);
+    }
+  }
+
+
+
+  &--more {
+
+    &:after {
+      content: '\002b';
+    }
+  }
+}

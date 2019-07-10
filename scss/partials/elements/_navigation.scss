@@ -1,0 +1,129 @@
+
+
+
+// ================================================================
+
+// MOBILE NAVIGATION STYLES
+
+// ================================================================
+
+
+
+.c-logo {
+  margin-bottom: 2.3em;
+  width: 100%;
+
+  line-height: 1;
+  text-decoration: none;
+
+  @include vp-nav-desktop {
+    width: 90%;
+  }
+
+  &__img {
+    width: 100%;
+  }
+}
+
+
+
+.c-nav {
+  overflow: hidden;
+  background-color: shade(white, 4);
+
+  @include vp-nav-desktop {
+    @include fixed(top 0 left 0);
+    @include size(20%, 100%);
+
+    z-index: var(--z-navigation);
+  }
+
+
+
+  &__scrollable {
+
+    @include vp-nav-desktop {
+      width: calc(100% + 17px);
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+  }
+
+
+
+  &__items {
+    position: relative;
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 2.8em 1.3em 2em;
+    font-size: 16px;
+
+    @include vp-medium-up {
+      padding-left: 10%;
+      font-size: 18px;
+    }
+  }
+
+
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 2px solid shade(white, 7);
+    width: 100%;
+
+    &:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+  }
+
+
+
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+
+
+  &__link {
+    margin-top: 0.7em;
+    text-decoration: none;
+    color: shade(white, 46);
+
+    transition: all var(--anim-dur) var(--anim-ease);
+
+    &:hover {
+      text-decoration: underline;
+      color: tint(black, 25);
+    }
+  }
+}
+
+
+
+// set active navigation states
+// ----------------------------
+$pages: ('blog', 'about');
+
+@each $page in $pages {
+  ##{$page} {
+    .#{$page} {
+      @include typo-medium;
+
+      color: tint(black, 25);
+    }
+  }
+}

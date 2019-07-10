@@ -1,0 +1,132 @@
+
+
+
+// ================================================================
+
+// CUSTOM CHECKBOXES AND RADIO BUTTONS
+
+// ================================================================
+
+
+
+// checkbox labels
+// ---------------
+.c-checkbox__label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+
+  color: var(--color-copy);
+
+  // label may contain links
+  // -----------------------
+  a {
+    @include typo-bold;
+
+    color: inherit;
+
+    &:hover {
+      color: var(--color-main);
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+// radio button labels
+// -------------------
+.c-radio__label {
+  @include typo-copy;
+
+  position: relative;
+  display: block;
+  margin-right: 1em;
+  cursor: pointer;
+
+  &:before {
+    border-radius: 50%;
+  }
+}
+
+
+
+// hide default input ui elements
+// ------------------------------
+.c-checkbox,
+.c-radio {
+  position: relative;
+  display: block;
+  border: none;
+  padding: 0;
+  height: 1px;
+  opacity: 0;
+
+  // shift user notification to correct position
+  // -------------------------------------------
+  margin-right: -1em;
+  width: 1em;
+  top: 10px;
+
+
+
+  // show custom ui elements
+  // -----------------------
+  &__label {
+    padding-left: 1.8em;
+
+    &:before {
+      @include absolute(top 0.1em left 0);
+      @include size(1.2em);
+
+      display: inline-block;
+      content: ' ';
+      border: var(--input-border-width) solid var(--input-border-color);
+      background-color: var(--input-color-bg);
+      box-shadow: inset 0 0 0 2px white;
+
+      transition: all calc(var(--anim-dur) / 2) var(--anim-ease);
+    }
+  }
+}
+
+
+
+// hover states only on desktop
+// ----------------------------
+@include vp-large-up {
+
+  .c-checkbox__label:hover:before,
+  .c-radio:hover + .c-radio__label:before {
+    background-color: var(--radiocheck-color-bg-hover);
+  }
+}
+
+
+
+// checkboxes - checked state
+// --------------------------
+.c-checkbox:checked + .c-checkbox__label:before {
+  @include size(0.6em, 1.2em);
+
+  top: 0;
+
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid var(--radiocheck-color-bg-checked);
+  border-bottom: 2px solid var(--radiocheck-color-bg-checked);
+
+  background-color: transparent;
+  box-shadow: none;
+
+  transform: rotateZ(37deg);
+  transform-origin: 100% 100%;
+}
+
+
+
+// radio buttons - checked state
+// -----------------------------
+.c-radio:checked + .c-radio__label:before {
+  background: var(--radiocheck-color-bg-checked);
+}

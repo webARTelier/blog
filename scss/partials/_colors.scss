@@ -1,0 +1,96 @@
+
+
+
+// ================================================================
+
+// PROJECT COLORS FILE
+// -------------------
+
+// this file contains color definitions
+
+// NOTE: to keep color changes manageable
+// color definintions are split into two steps:
+// - STEP I:    define colors and corresponding names
+// - STEP II :  assign color names to color scheme roles
+
+// ================================================================
+
+
+
+// STEP I: define colors and corresponding names
+// ---------------------------------------------
+
+// main colors
+// -----------
+$color-red:                                 #8e211a;
+$color-red-hover:                           shade($color-red, 20);
+
+$color-copy:                                tint(black, 25);
+
+
+
+// ================================================================
+
+
+
+// STEP II: assign color names to color scheme roles
+// NOTE: role colors are set as native css variables
+// NOTE 2: since all elements work with role colors, the
+// definitions below are mandatory!
+// -----------------------------------------------------
+
+// color scheme main roles
+// -----------------------
+:root {
+  --color-primary:                          #{$color-red};
+  --color-primary-hover:                    #{$color-red-hover};
+  --color-primary-font:                     #{$color-red};
+
+  --color-error:                            #{$color-red};
+
+  --color-copy:                             #{$color-copy};
+
+  --color-link:                             #{$color-red};
+  --color-link-hover:                       #{$color-red-hover};
+
+  --color-page-bg:                          white;
+}
+
+
+
+// ================================================================
+
+
+
+// UTILITY COLOR CLASSES
+// =====================
+
+// shadows and gradients
+// ---------------------
+.u-shadow-text {
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2) !important;
+}
+
+.u-shadow-box {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1) !important;
+}
+
+.u-shadow-modal {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4) !important;
+}
+
+
+
+// colors
+// ------
+.u-color-primary {
+  color: var(--color-primary) !important;
+}
+
+
+
+// background colors
+// -----------------
+.u-bg-primary {
+  background-color: --color-primary !important;
+}

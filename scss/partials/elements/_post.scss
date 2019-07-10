@@ -1,0 +1,158 @@
+
+
+
+// ================================================================
+
+// POST STYLES
+
+// ================================================================
+
+
+
+.c-post {
+  max-width: var(--maxwidth-content);
+
+
+
+  &__image {
+    width: 100%;
+  }
+
+
+
+  &__time {
+    display: block;
+    padding-top: 4%;
+    font-size: 14px;
+    color: shade(white, 33);
+  }
+
+
+
+  &__headline {
+    @include responsive-font(6vw, 36px, 80px);
+
+    display: inline-block;
+
+    margin-top: 2%;
+    text-decoration: none;
+    letter-spacing: -1px;
+
+    color: var(--color-copy);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+
+
+  &__wrapper {
+    margin-top: 30px;
+
+    @include vp-nav-desktop {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
+
+
+
+  &__content {
+
+    @include vp-nav-desktop {
+      width: 74%;
+    }
+  }
+
+
+
+  &__abstract {
+    @include typo-bold;
+  }
+
+
+
+  &__text {
+    margin-top: 0.5em;
+
+    a {
+      @include link-default;
+    }
+  }
+
+
+
+  &__more {
+    @include typo-regular;
+
+    display: inline-block;
+    margin-top: 1em;
+    text-decoration: none;
+    color: var(--color-primary);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+.c-meta {
+  margin-right: 6%;
+  margin-bottom: 30px;
+  border-top: 2px solid shade(white, 7);
+
+  @include vp-nav-desktop {
+    margin-top: 6px;
+    width: 20%;
+  }
+
+
+
+  &__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    border-bottom: 2px solid shade(white, 7);
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+
+
+  &__icon {
+    @include size(1em);
+
+    margin-right: 1em;
+    fill: shade(white, 40);
+  }
+
+
+
+  &__link {
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    color: shade(white, 40);
+
+    transition: all var(--anim-dur) var(--anim-ease);
+
+    // force overflow ellipsis
+    // -----------------------
+    width: calc(100%);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--color-copy);
+    }
+  }
+}

@@ -1,0 +1,182 @@
+
+
+
+// ================================================================
+
+// PROJECT SETTINGS
+
+// ================================================================
+
+
+
+// SCSS VARIABLES
+// ==============
+
+// paths and breakpoints can not be set as css variables
+// so we define them in scss
+// -----------------------------------------------------
+
+// paths
+// -----
+$path-images:                               '../images/';
+$path-fonts:                                '../fonts/';
+
+
+
+// breakpoints
+// NOTE: value defines maximum width of viewport
+// ---------------------------------------------
+$bp: (
+  'tiny':				                    479px,
+  'small':                                  767px,
+  'medium':                                 989px,
+  'large':                                  1199px,
+
+  'navigation':                             767px,
+  'ultra':                                  1920px,
+);
+
+
+
+// ================================================================
+
+
+
+// CSS VARIABLES
+// =============
+
+// property values are set as native css variables
+// -----------------------------------------------
+
+:root {
+
+  // provide current viewport name for javascript
+  // --------------------------------------------
+  --vp-name:                                tiny;
+
+
+
+  // provide current navigation state for javascript
+  // -----------------------------------------------
+  --navstate:                               mobile;
+
+
+
+  // maximum content width
+  // ---------------------
+  --maxwidth-content:                       1000px;
+
+
+  // set default copy font size
+  // --------------------------
+  --fontsize-copy:                          18px;
+
+
+
+  // set minimum size for touchable elements
+  // ---------------------------------------
+  --size-touchable:                         44px;
+
+
+
+  // border radius
+  // -------------
+  --border-radius:                          0;
+  --border-radius-modal:                    30px;
+
+
+
+  // animations
+  // ----------
+  --anim-dur:			                    0.3s;
+  --anim-ease:		                        ease-out;
+
+
+
+  // z-indices
+  // ---------
+  --z-default:                              1;
+  --z-totop:                                100;
+  --z-navigation:                           200;
+  --z-tooltips:                             300;
+  --z-overlays:                             400;
+  --z-modals:                               500;
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// viewport 'small'
+// ----------------
+@include vp-small {
+
+  :root {
+    --vp-name:                              small;
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// viewport 'medium'
+// -----------------
+@include vp-medium {
+
+  :root {
+    --vp-name:                              medium;
+    --fontsize-copy:                        20px;
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// viewport 'large'
+// ----------------
+@include vp-large {
+
+  :root {
+    --vp-name:                              large;
+    --fontsize-copy:                        20px
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// viewport 'huge'
+// ---------------
+@include vp-huge {
+
+  :root {
+    --vp-name:                              huge;
+    --fontsize-copy:                        20px;
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// navigation viewport 'desktop'
+// -----------------------------
+@include vp-nav-desktop {
+
+  :root {
+    --navstate:                             desktop;
+  }
+}

@@ -1,0 +1,176 @@
+
+
+
+// ================================================================
+
+// SOME LITTLE HELPERS FOR DAILY ROUTINE
+
+// ================================================================
+
+
+
+// =================
+// table of contents
+// =================
+
+// - tint/shade colors
+// - shorthand position
+// - shorthand size
+// - set aspect ratio
+// - css shape triangle
+// - get golden ratio a/b
+// - hide any element visually
+// - get breakpoint from map
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// tint/shade colors
+// -----------------
+@function tint($color, $tint) { @return mix(white, $color, $tint + 0%); }
+@function shade($color, $shade) { @return mix(black, $color, $shade + 0%); }
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// shorthand position
+// ------------------
+@mixin absolute($args) { @include _position(absolute, $args); }
+@mixin fixed($args) { @include _position(fixed, $args); }
+@mixin relative($args) { @include _position(relative, $args); }
+
+@mixin _position($position, $args) {
+  $offsets: top right bottom left;
+
+  position: $position;
+
+  @each $o in $offsets {
+    $i: index($args, $o);
+
+    @if $i
+      and $i + 1 <= length($args)
+      and type-of( nth($args, $i + 1) ) == number {
+        #{$o}: nth($args, $i + 1);
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// shorthand size
+// --------------
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// set constant aspect ratio for container
+// ---------------------------------------
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &:before {
+    display: block;
+    content: '';
+    padding-top: (($height / $width) * 100%);
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// css shape 'triangle'
+// --------------------
+@mixin triangle($direction, $size: 6px, $color: #222) {
+
+  // directions: up, down, left, right
+
+  @include size(0);
+
+  content: '';
+  display: block;
+
+  @if ($direction == 'up'){
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+  }
+
+  @else if ($direction == 'down'){
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+  }
+
+  @else if ($direction == 'left'){
+    border-top: $size solid transparent;
+    border-right: $size solid $color;
+    border-bottom: $size solid transparent;
+  }
+
+  @else if ($direction == 'right'){
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// get golden ratio a/b
+// --------------------
+@function goldenratio-a($width) { @return $width / 1.618; }
+@function goldenratio-b($width) { @return $width - ($width / 1.618); }
+
+
+
+// ----------------------------------------------------------------
+
+
+
+//	hide any element visually
+// --------------------------
+@mixin hide-visually {
+  @include size(1px);
+
+  position: absolute;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// get breakpoint from map in '_settings.scss'
+// -------------------------------------------
+@function bp($breakpoint) {
+  @return map-get($bp, $breakpoint);
+}

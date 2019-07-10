@@ -1,0 +1,67 @@
+
+
+
+// ================================================================
+
+// CUSTOM STYLED USER NOTIFICATIONS FOR INVALID INPUTS
+
+// ================================================================
+
+
+
+$invalid-color-background:                  tint($color-red, 92);
+
+
+
+// remove browser default stylings
+// --------------------------------
+*:invalid {
+  outline: none;
+  shadow-box: none;
+}
+
+
+
+.is-submitted {
+
+  // standard inputs and text areas
+  // ------------------------------
+  .c-input,
+  .c-select {
+
+    &:invalid {
+      border: var(--input-border-width) solid var(--color-error);
+      background-color: $invalid-color-background !important;  // selects need '!important'
+    }
+  }
+
+
+
+  // some extra treatment for checkboxes/radio buttons
+  // -------------------------------------------------
+  .c-checkbox:invalid,
+  .c-radio:invalid {
+    border: none;
+  }
+
+  .c-checkbox:invalid + .c-checkbox__label,
+  .c-radio:invalid + .c-radio__label {
+    color: var(--color-error);
+
+    &:before {
+      border: var(--input-border-width) solid var(--color-error);
+      background-color: $invalid-color-background;
+    }
+
+    &:hover {
+
+      &:before {
+        background-color: mix(white, $color-red, 50%);
+      }
+    }
+
+    a {
+      color: var(--color-error);
+    }
+  }
+}

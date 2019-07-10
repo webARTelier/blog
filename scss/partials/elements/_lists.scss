@@ -1,0 +1,67 @@
+
+
+
+// ================================================================
+
+// LIST STYLES
+
+// ================================================================
+
+
+
+.c-list {
+  display: table;
+  margin: 1em 0 0;
+  padding: 0;
+
+  li {
+    position: relative;
+    margin-top: 0.5em;
+    padding-left: 1.5em;
+    list-style: none;
+
+    &:before {
+      @include absolute(top 0 left 0);
+
+      text-align: right;
+    }
+  }
+
+
+
+  &--default {
+
+    li {
+
+      &:before {
+        content: '\25cf';
+      }
+    }
+  }
+
+
+
+  &--decimal {
+    counter-reset: olc;
+
+    li {
+      counter-increment: olc;
+
+      &:before {
+        content: counter(olc) ".";
+      }
+    }
+  }
+
+
+
+  &--icon {
+
+    svg {
+      @include absolute(top 0.4em left 0);
+      @include size(0.8em);
+
+      fill: var(--color-main);
+    }
+  }
+}

@@ -1,0 +1,53 @@
+
+
+
+// ================================================================
+
+// INTEGRATED INPUT UNIT DISPLAY
+
+// ================================================================
+
+
+
+.c-unit {
+  position: relative;
+  display: block;     // fix firefox absolute positioning bug
+
+  // unit display
+  // ------------
+  &:after {
+    @include typo-bold;
+
+    position: absolute;
+    top: var(--input-border-width);
+    right: var(--input-border-width);
+    bottom: var(--input-border-width);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-top-right-radius: var(--input-border-radius);
+    border-bottom-right-radius: var(--input-border-radius);
+
+    color: var(--input-color);
+    background-color: transparent;
+  }
+
+
+
+
+  &--euro {
+
+    &:after {
+      content: '€';
+      width: 1.5em;
+    }
+
+    // shelter space for unit display
+    // ------------------------------
+    .c-input {
+      padding-right: 1.6em;
+    }
+  }
+}

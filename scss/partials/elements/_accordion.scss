@@ -1,0 +1,80 @@
+
+
+
+// ================================================================
+
+// ACCORDION ELEMENT STYLES
+
+// ================================================================
+
+
+
+.c-accordion {
+  position: relative;
+
+
+
+  &__head {
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 0.2em;
+    border-radius: var(--border-radius);
+    padding: 0.5em 1em;
+    cursor: pointer;
+
+    background-color: var(--color-main);
+
+    transition: all var(--anim-dur) var(--anim-ease);
+
+    &:hover {
+      background-color: var(--color-contrast);
+    }
+
+    .is-open & {
+      background-color: var(--color-contrast);
+    }
+  }
+
+
+
+  &__headline {
+    @include responsive-font(2.5vw, 18px, 23px);
+
+    font-family: headline, serif;
+    color: white;
+    transition: all var(--anim-dur) var(--anim-ease);
+
+    .is-open & {
+      color: var(--color-main);
+    }
+  }
+
+
+
+  &__icon {
+    @include size(1em);
+
+    fill: white;
+    transition: all var(--anim-dur) var(--anim-ease);
+
+    .is-open & {
+      transform: rotate(180deg);
+      fill: var(--color-main);
+    }
+  }
+
+
+
+  &__content {
+    display: none;
+
+    border-radius: var(--border-radius);
+    padding: 0.5em 1em;
+
+    background-color: shade(white, 5);
+  }
+}

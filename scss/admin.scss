@@ -1,0 +1,35 @@
+
+
+
+// ================================================================
+
+// ADMIN SCSS FILE
+// ---------------
+// this file is for concatenating scss partials only.
+// there should be no stlye declaration inside this file!
+
+// ================================================================
+
+
+
+// get helper mixins
+// -----------------
+@import 'partials/basic/mixin_mediaqueries';
+@import 'partials/basic/mixin_grid';
+@import 'partials/basic/mixin_helpers';
+@import 'partials/basic/mixin_respfont';
+
+
+
+// project settings, colors & fonts
+// --------------------------------
+@import 'partials/settings';
+@import 'partials/colors';
+@import 'partials/typo';
+@import 'partials/animations';
+
+
+
+// additional page element styles
+// ------------------------------
+@import 'partials/elements/__admin_navigation';

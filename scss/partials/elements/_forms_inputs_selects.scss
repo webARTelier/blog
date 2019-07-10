@@ -1,0 +1,45 @@
+
+
+
+// ================================================================
+
+// CUSTOM SELECT INPUT STYLES
+
+// ================================================================
+
+
+
+.c-select {
+  @include typo-copy;
+
+  // remove browser stylings
+  // -----------------------
+  appearance: none;
+  outline: none;
+  border-radius: var(--input-border-radius);
+  width: 100%;
+
+  border: var(--input-border-width) solid var(--input-border-color);
+  padding: var(--input-padding-y) 2.5em var(--input-padding-y) var(--input-padding-x);
+  cursor: pointer;
+
+  color: var(--input-color);
+  background-color: var(--input-color-bg) !important;   // needs '!important' to take effect
+
+  transition: border-color var(--anim-dur) var(--anim-ease);
+
+  &:focus {
+    border-color: var(--input-border-color-focus);
+  }
+
+  // new arrow image
+  // ---------------
+  background: url(#{$path-images}arrow_select.svg) right 1em center/1em no-repeat;
+
+
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}

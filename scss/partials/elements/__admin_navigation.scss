@@ -1,0 +1,79 @@
+
+
+
+// ================================================================
+
+// ADDITIONAL ADMIN NAVIGATION STYLES
+
+// ================================================================
+
+
+
+.c-nav {
+
+  &--admin {
+    background-color: $color-red;
+  }
+
+
+
+  &__title--admin {
+    color: white;
+  }
+
+
+
+  &__link--admin {
+    color: white;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+
+
+.c-logo__admin {
+  @include responsive-font(5vw, 36px, 80px);
+
+  font-family: headline, sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+
+
+.c-tabNav {
+
+  &--admin {
+    background-color: tint($color-red, 30);
+  }
+
+
+
+  &__icon--admin {
+    fill: tint($color-red, 80);
+  }
+
+
+
+  &__item--admin {
+
+    &:hover {
+
+      .c-tabNav__icon--admin {
+        fill: white;
+      }
+    }
+
+
+    &.is-active {
+      background-color: $color-red !important;
+
+      .c-tabNav__icon--admin {
+        fill: white;
+      }
+    }
+  }
+}

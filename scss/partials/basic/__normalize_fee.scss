@@ -1,0 +1,89 @@
+
+
+
+// ================================================================
+
+// FEE NORMALIZE
+// -------------
+// additional FEE styles to normalize browser behaviours
+
+// ================================================================
+
+
+
+// set all elements to border-box
+// ------------------------------
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// stretch body over full viewport height
+// --------------------------------------
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// for various reasons SVGs are tricky to click at,
+// so we delegate the click to parent element anyway
+// -------------------------------------------------
+svg {
+  pointer-events: none;
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// by default we use a different font for 'bold'
+// so we remove the browser default 'bold' font weight
+// headline margins are set in corresponding partials
+// ---------------------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal;
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// set paragraph margins to top only
+// ---------------------------------
+p {
+  margin-top: 1em;
+  margin-bottom: 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+

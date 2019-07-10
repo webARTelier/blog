@@ -1,0 +1,82 @@
+
+
+
+// ================================================================
+
+// TAB ELEMENT STYLES
+
+// ================================================================
+
+
+
+// tab navigation
+// --------------
+.c-tabNav {
+  display: flex;
+  justify-content: flex-start;
+
+  padding-top: 0.5em;
+  padding-left: 1em;
+  background-color: shade(white, 9);
+
+  @include vp-nav-desktop {
+    padding-left: 10%;
+  }
+
+
+
+  &__item {
+    margin-right: 0.2em;
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+    padding: 0.5em 1em 0.3em;
+
+    text-align: center;
+
+    color: white;
+
+    transition: all var(--anim-dur) var(--anim-ease);
+    cursor: pointer;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &:hover {
+
+      .c-tabNav__icon {
+        fill: tint(black, 40);
+      }
+    }
+
+    &.is-active {
+      background-color: shade(white, 4);
+
+      .c-tabNav__icon {
+        fill: tint(black, 46);
+      }
+    }
+  }
+
+
+
+  &__icon {
+    @include size(1.3em);
+
+    fill: shade(white, 24);
+    transition: all var(--anim-dur) var(--anim-ease);
+  }
+}
+
+
+
+// tab contents
+// ------------
+.c-tab {
+  display: none;
+
+  &.is-active {
+    display: block;
+    animation: fadeIn 0.2s;
+  }
+}

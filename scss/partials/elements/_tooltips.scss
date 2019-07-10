@@ -1,0 +1,187 @@
+
+
+
+// ================================================================
+
+// PURE CSS TOOLTIPS
+
+// ================================================================
+
+
+:root {
+  --tooltip-distance:                         0.5em;
+  --tooltip-triangle-size:                    0.5em;
+  --tooltip-fontsize:                         14px;
+  --tooltip-color:                            white;
+  --tooltip-color-bg:                         var(--color-main);
+}
+
+
+
+%tooltip-commons {
+  position: relative;
+  cursor: pointer;
+
+  // set tooltip triangle size calculation base
+  // ------------------------------------------
+  &:before {
+    font-size: var(--tooltip-fontsize);
+  }
+
+  // tooltip content presentation
+  // ----------------------------
+  &:after {
+    border-radius: var(--border-radius);
+    padding: 0.2em 0.5em 0.3em;
+
+    font-size: var(--tooltip-fontsize);
+    line-height: 1.2;
+    white-space: nowrap;
+
+    color: var(--tooltip-color);
+    background-color: var(--tooltip-color-bg);
+  }
+
+  // hide tooltip when not hovered
+  // -----------------------------
+  &:before,
+  &:after {
+    z-index: var(--z-tooltips);
+    visibility: hidden;
+    opacity: 0;
+
+    transition: opacity var(--anim-dur) var(--anim-ease);
+  }
+
+  // show tooltip when hovered
+  // -------------------------
+  &:hover {
+
+    &:before,
+    &:after {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+[data-tooltip-right] {
+  @extend %tooltip-commons;
+
+  // tooltip triangle
+  // ----------------
+  &:before {
+    @include absolute(top 50%);
+    @include triangle(left, var(--tooltip-triangle-size), var(--tooltip-color-bg));
+
+    z-index: 10000;
+    left: calc(100% + var(--tooltip-distance));
+    transform: translateY(-50%);
+  }
+
+  // tooltip content
+  // ---------------
+  &:after {
+    @include absolute(top 50%);
+
+    left: calc(100% +  var(--tooltip-triangle-size) + var(--tooltip-distance));
+    content: attr(data-tooltip-right);
+    transform: translateY(-50%);
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+[data-tooltip-left] {
+  @extend %tooltip-commons;
+
+  // tooltip triangle
+  // ----------------
+  &:before {
+    @include absolute(top 50%);
+    @include triangle(right, var(--tooltip-triangle-size), var(--tooltip-color-bg));
+
+    right: calc(100% + var(--tooltip-distance));
+    transform: translateY(-50%);
+  }
+
+  // tooltip content
+  // ---------------
+  &:after {
+    @include absolute(top 50%);
+
+    right: calc(100% + var(--tooltip-distance) + var(--tooltip-triangle-size));
+    content: attr(data-tooltip-left);
+    transform: translateY(-50%);
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+[data-tooltip-top] {
+  @extend %tooltip-commons;
+
+  // tooltip triangle
+  // ----------------
+  &:before {
+    @include absolute(left 10%);
+    @include triangle(down, var(--tooltip-triangle-size), var(--tooltip-color-bg));
+
+    bottom: calc(100% + var(--tooltip-distance));
+    transform: translateX(-50%);
+  }
+
+  // tooltip content
+  // ---------------
+  &:after {
+    @include absolute(left 10%);
+
+    bottom: calc(100% + var(--tooltip-distance) + var(--tooltip-triangle-size));
+    content: attr(data-tooltip-top);
+    transform: translateX(-50%);
+  }
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+[data-tooltip-bottom] {
+  @extend %tooltip-commons;
+
+  // tooltip triangle
+  // ----------------
+  &:before {
+    @include absolute(left 10%);
+    @include triangle(up, var(--tooltip-triangle-size), var(--tooltip-color-bg));
+
+    top: calc(100% + (var(--tooltip-distance)));
+    transform: translateX(-50%);
+  }
+
+  // tooltip content
+  // ---------------
+  &:after {
+    @include absolute(left 10%);
+
+    top: calc(100% + var(--tooltip-distance) + var(--tooltip-triangle-size));
+    content: attr(data-tooltip-bottom);
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,42 @@
+
+
+
+// ================================================================
+
+// PAGE OVERLAYS
+
+// ================================================================
+
+
+
+.c-pageOverlay {
+  @include fixed(top 0 left 0);
+  @include size(100%);
+
+  z-index: var(--z-overlays);
+  visibility: hidden;
+  opacity: 0;
+
+  transition: all var(--anim-dur) var(--anim-ease);
+
+  &.is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+
+  // dark overlay
+  // ------------
+  &--dark {
+    background-color: rgba(black, 0.7);
+  }
+
+
+
+  // light overlay
+  // -------------
+  &--light {
+    background-color: rgba(white, 0.7);
+  }
+}

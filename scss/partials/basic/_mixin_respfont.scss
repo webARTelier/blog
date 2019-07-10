@@ -1,0 +1,46 @@
+
+
+
+// ================================================================
+
+// VIEWPORT SIZED TYPOGRAPHY WITH MIN AND MAX VALUE
+
+// ================================================================
+
+
+
+// $size-font-dynamic:      viewport based font size
+// $size-min:               minimum font size (in px)
+// $size-max:               maximum font size (in px), optional
+
+
+
+@mixin responsive-font($size-font-dynamic, $size-min, $size-max: false) {
+
+  // calculate breakpoint for minimum font size
+  // ------------------------------------------
+  $size-font-dynamic-unitless: $size-font-dynamic / ($size-font-dynamic - $size-font-dynamic + 1);
+  $dimension: if(unit($size-font-dynamic) == 'vh', 'height', 'width');
+  $size-min-breakpoint: $size-min / $size-font-dynamic-unitless * 100;
+
+  @media (max-#{$dimension}: #{$size-min-breakpoint}) {
+    font-size: $size-min;
+  }
+
+
+
+  // do we have a maximum size?
+  // --------------------------
+  @if $size-max {
+
+    // calculate breakpoint for maximum font size
+    // ------------------------------------------
+    $size-max-breakpoint: $size-max / $size-font-dynamic-unitless * 100;
+
+    @media (min-#{$dimension}: #{$size-max-breakpoint}) {
+      font-size: $size-max;
+    }
+  }
+
+  font-size: $size-font-dynamic;
+}

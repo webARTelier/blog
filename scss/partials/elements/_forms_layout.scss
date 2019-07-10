@@ -1,0 +1,114 @@
+
+
+
+// ================================================================
+
+// FORM LAYOUTS
+
+// ================================================================
+
+
+
+:root {
+  --label-width:                            6em;
+  --splitInput--gutter:                     3px;
+}
+
+
+
+// -----------------------------------------------------------------------
+
+
+
+// container for form inputs
+// -------------------------
+.l-form {
+
+  // do not stretch in form columns
+  // ------------------------------
+  align-self: start;
+
+  display: grid;
+  grid-template-columns: var(--label-width) 1fr;
+  grid-gap: var(--grid-gutter-form-column) var(--grid-gutter-form-row);
+  align-items: center;
+}
+
+
+
+// -----------------------------------------------------------------------
+
+
+
+// radio buttons container
+// -----------------------
+.l-radiobuttons {
+  display: flex;
+
+  // make height match the height of other inputs
+  // --------------------------------------------
+  border: var(--input-border-width) solid transparent;
+  padding-top: var(--input-padding-y);
+  padding-bottom: var(--input-padding-y);
+}
+
+
+
+// -----------------------------------------------------------------------
+
+
+
+// split inputs
+// ------------
+.l-splitInput {
+  display: grid;
+  grid-column-gap: var(--splitInput--gutter);
+
+
+
+  &--40-60 {
+    grid-template-columns: 4fr 6fr;
+  }
+
+
+
+  &--60-40 {
+    grid-template-columns: 6fr 4fr;
+  }
+
+
+
+  &--30-30-40 {
+    grid-template-columns: 3fr 3fr 4fr;
+  }
+}
+
+
+
+// -----------------------------------------------------------------------
+
+
+
+// span label & input column
+// -------------------------
+.l-spanLabelInput {
+  grid-column: 1 /span 2;
+}
+
+
+
+// -----------------------------------------------------------------------
+
+
+
+// form spacer row
+// ---------------
+.l-formSpacer {
+  grid-column: 1 /span 2;
+
+  // make height match the height of other inputs
+  // --------------------------------------------
+  border: var(--input-border-width) solid transparent;
+  padding-top: var(--input-padding-y);
+  padding-bottom: var(--input-padding-y);
+}

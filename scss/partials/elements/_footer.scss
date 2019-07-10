@@ -1,0 +1,64 @@
+
+
+
+// ================================================================
+
+// FOOTER ELEMENT
+
+// ================================================================
+
+
+
+.l-footer {
+  @include vp-nav-desktop {
+    padding: 0 6% 4% 26%;
+  }
+}
+
+
+
+.c-legal {
+  display: flex;
+  justify-content: flex-start;
+
+  padding: 2.5%;
+  font-size: 14px;
+  background-color: shade(white, 4);
+
+
+
+  &__item {
+    position: relative;
+    margin-right: 1em;
+    color: shade(white, 46);
+
+    &:after {
+      @include absolute(top 0 right -0.5em);
+
+      content: '|';
+      z-index: 1;
+    }
+
+    &:last-child {
+      margin-right: 0;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+
+    transition: all var(--anim-dur) var(--anim-ease);
+
+    &:hover {
+      text-decoration: underline;
+      color: tint(black, 25);
+    }
+  }
+}

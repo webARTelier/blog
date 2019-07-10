@@ -1,0 +1,61 @@
+
+
+
+// ================================================================
+
+// ANIMATION STYLES
+// NOTE: all available animation styles are located at '_animate_all.scss'
+
+// ================================================================
+
+
+
+// preparations
+// ------------
+.js-add-animation {
+  visibility: hidden;
+}
+
+.is-animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.is-animated.infinite {
+  animation-iteration-count: infinite;
+}
+
+.is-animated.hinge {
+  animation-duration: 2s;
+}
+
+.is-animated.flipOutX,
+.is-animated.flipOutY,
+.is-animated.bounceIn,
+.is-animated.bounceOut {
+  animation-duration: .75s;
+}
+
+
+
+// -----------------------------------------------------------------------
+
+
+
+// selected animations for this project
+// ------------------------------------
+@keyframes fadeinright {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeinright {
+  animation-name: fadeinright;
+}

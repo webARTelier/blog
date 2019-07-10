@@ -1,0 +1,123 @@
+
+
+
+// ================================================================
+
+// DEFAULT INPUT STYLES
+// --------------------
+// also contains styles for input labels
+
+// ================================================================
+
+
+
+:root {
+  --input-border-width:                       2px;
+  --input-border-radius:                      var(--border-radius);
+
+  --input-padding-x:                          0.6em;
+  --input-padding-y:                          0.6em;
+
+  --input-color:                              var(--color-primary);
+  --input-color-bg:                           white;
+  --input-color-placeholder:                  rgba(0, 0, 0, 0.25);
+
+  --input-color-border:                       #{shade(white, 7)};
+  --input-color-border-focus:                 #{shade(white, 13)};
+
+  --radiocheck-color-bg-hover:                var(--color-primary);
+  --radiocheck-color-bg-checked:              var(--color-primary);
+
+  --color-label:                              var(--input-copy);
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// inputs & text areas
+// -------------------
+.c-input {
+  @include typo-copy;
+
+  // remove browser stylings
+  // -----------------------
+  appearance: none;
+  outline: none;
+
+  // apply own stylings
+  // ------------------
+  border-radius: var(--input-border-radius);
+  border: var(--input-border-width) solid var(--input-color-border);
+  width: 100%;
+  padding: var(--input-padding-y) var(--input-padding-x);
+
+  color: var(--color-copy);
+  background-color: var(--input-color-bg);
+
+  transition: border-color var(--anim-dur) var(--anim-ease);
+
+  &::placeholder {
+    color: var(--input-color-placeholder);
+  }
+
+  // focus state
+  // -----------
+  &:focus {
+    border-color: var(--input-color-border-focus);
+    shadow-box: none;
+
+    // hide placeholder on focus
+    // -------------------------
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
+
+// hide ridiculous chrome spinner in date inputs
+// ---------------------------------------------
+::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// labels
+// ------
+.c-label {
+  @include typo-bold;
+
+  display: block;
+
+  padding: 20px 0 10px;
+
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  color: var(--color-label);
+}
+
+
+
+// ----------------------------------------------------------------
+
+
+
+// hidden form inputs
+// ------------------
+#input_remark,
+#input_replyTo {
+  display: none;
+}

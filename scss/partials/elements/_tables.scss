@@ -1,0 +1,66 @@
+
+
+
+// ================================================================
+
+// RESPONSIVE TABLE STYLES
+
+// ================================================================
+
+
+
+// responsive table container
+// --------------------------
+.c-tableWrapper {
+  margin: 0 0 14px;
+  overflow: auto;
+
+  // make scrollbar visible on mobile devices
+  // ----------------------------------------
+  &:-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+  }
+
+  &:-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 3px solid #fff;
+    background-color: rgba(0, 0, 0, .3);
+  }
+}
+
+
+
+// content table styles
+// --------------------
+.c-table {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 100%;
+
+  tr {
+    &:nth-child(odd) {
+      background-color: var(--color-contrast-light);
+    }
+  }
+
+  th,
+  td {
+    padding: 0.5em;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  td {
+    border-bottom: 1px solid var(--color-main);
+  }
+
+  th {
+    @include typo-bold;
+
+    border-bottom: 2px solid var(--color-main);
+    color: var(--color-copy);
+    background-color: white;
+  }
+}

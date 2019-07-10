@@ -1,0 +1,40 @@
+
+
+
+// ================================================================
+
+// GALLERY STYLES
+
+// ================================================================
+
+
+
+
+.c-gallery {
+  @include grid(1, 2, 3, 4, 5);
+
+  grid-gap: var(--grid-gutter-gallery-column) var(--grid-gutter-gallery-row);
+
+
+
+  &__item {
+    @include aspect-ratio(16, 9);
+
+    display: block;
+  }
+
+
+
+  &__imgBox {
+    @include absolute(top 0 left 0);
+    @include size(100%);
+
+    text-decoration: none;
+  }
+
+
+
+  &__img {
+    @include fit(cover, $pos-y: top);
+  }
+}

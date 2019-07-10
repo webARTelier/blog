@@ -1,0 +1,53 @@
+
+
+
+// ================================================================
+
+// COOKIE CONSENT BANNER STYLES
+
+// ================================================================
+
+
+
+.cc-window {
+  @include fixed(right 0 bottom 0 left 0);
+
+  z-index: z('cookiebanner');
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 20px;
+
+  background-color: var(--color-contrast);
+
+  @include vp-small-up {
+    flex-direction: row;
+  }
+}
+
+.cc-message {
+  color: var(--color-main);
+}
+
+.cc-link {
+  @includee link-default;
+}
+
+.cc-btn {
+  @extend .c-button;
+
+  margin-top: 1em;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  height: var(--size-touchable);
+
+  @include vp-small-up {
+    margin-top: 0;
+    margin-left: 2em;
+  }
+}

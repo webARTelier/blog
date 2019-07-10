@@ -1,0 +1,112 @@
+
+
+
+// ================================================================
+
+// BUTTONS
+
+// ================================================================
+
+
+
+.c-button {
+
+  --button-color:                           white;
+  --button-color-bg:                        var(--color-primary);
+
+
+
+  @include typo-headline;
+
+  margin-top: 1.3em;
+  border: 2px solid var(--button-color-bg);
+  border-radius: var(--border-radius);
+  padding: 0 1em;
+
+  text-align: center;
+  line-height: var(--size-touchable);
+
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+
+  color: var(--button-color);
+  background-color: var(--button-color-bg);
+
+  transition: all var(--anim-dur) var(--anim-ease);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border-color: var(--color-primary-hover);
+    background-color: var(--color-primary-hover);
+  }
+
+  &:active {
+    border-color: var(--button-color-bg);
+    color: var(--button-color-bg);
+    background-color: var(--button-color);
+
+    .c-button__icon {
+      fill: var(--button-color-bg);
+    }
+
+    .c-button__text {
+      color: var(--button-color-bg);
+    }
+  }
+
+
+
+  &__text {
+    color: var(--button-color);
+  }
+
+
+
+  &__flex {
+
+    // NOTE: since html buttons can not be set to 'display: flex'
+    // we have to insert an extra div that works as flex container
+    // -----------------------------------------------------------
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: var(--border-radius);
+
+    transition: all var(--anim-dur) var(--anim-ease);
+    pointer-events: none;
+  }
+
+
+
+  &__icon {
+    @include size(1.7em);
+
+    padding: 0 0.3em;
+    fill: var(--button-color);
+  }
+
+
+
+  &__text {
+    display: inline;
+  }
+
+
+
+  &--100 {
+    width: 100%;
+  }
+
+
+
+  &--small {
+    padding: 0 0.5em;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}

@@ -1,0 +1,83 @@
+
+
+
+// ================================================================
+
+// ELEMENT 'MODAL' - COMMON STYLES
+
+// ================================================================
+
+
+
+.c-modal {
+
+  --modal-minwidth:     280px;
+  --modal-maxwidth:     530px;
+  --modal-padding:      20px;
+  --modal-padding-top:  calc(var(--size-touchable) + var(--modal-padding));
+
+
+
+  @include fixed(top 50% left 50%);
+
+  z-index: var(--z-modals);
+  opacity: 0;
+  visibility: hidden;
+
+  border-radius: var(--border-radius-modal);
+  padding: var(--modal-padding-top) var(--modal-padding) var(--modal-padding);
+
+  width: 90%;
+  min-width: var(--modal-minwidth);
+  max-width: var(--modal-maxwidth);
+
+  background-color: white;
+
+  transition: all var(--anim-dur) var(--anim-ease);
+  transform: translate(-50%, -50%) scale(0);
+
+  @include vp-medium-up {
+    top: 40%;
+  }
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+
+
+
+  &__close {
+    @include size(var(--size-touchable));
+
+    position: absolute;
+    top: var(--modal-padding);
+    right: var(--modal-padding);
+
+    z-index: 1;
+    display: flex;
+    cursor: pointer;
+
+    transition: all var(--anim-dur) var(--anim-ease);
+
+    // hover state in desktop view only
+    // --------------------------------
+    @include vp-large-up {
+
+      &:hover {
+        background-color: shade(white, 5);
+      }
+    }
+  }
+
+
+
+  &__icon {
+    @include size(50%);
+
+    margin: auto;
+    fill: var(--color-main);
+  }
+}

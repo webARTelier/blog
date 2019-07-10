@@ -1,0 +1,47 @@
+
+
+
+// ================================================================
+
+// RESPONSIVE CONTENT GRID DECLARATIONS
+
+// ================================================================
+
+
+
+@mixin grid($cols-tiny, $cols-small, $cols-medium, $cols-large, $cols-huge) {
+  display: grid;
+
+  justify-items: stretch;
+  align-items: stretch;
+
+  @if($cols-tiny != 1) {
+    @include vp-tiny {
+      grid-template-columns: repeat($cols-tiny, 1fr);
+    }
+  }
+
+  @if($cols-small != 1) {
+    @include vp-small {
+      grid-template-columns: repeat($cols-small, 1fr);
+    }
+  }
+
+  @if($cols-medium != 1) {
+    @include vp-medium {
+      grid-template-columns: repeat($cols-medium, 1fr);
+    }
+  }
+
+  @if($cols-large != 1) {
+    @include vp-large {
+      grid-template-columns: repeat($cols-large, 1fr);
+    }
+  }
+
+  @if($cols-huge != 1) {
+    @include vp-huge {
+      grid-template-columns: repeat($cols-huge, 1fr);
+    }
+  }
+}
