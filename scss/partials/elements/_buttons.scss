@@ -16,16 +16,15 @@
 
 
 
-  @include typo-headline;
-
   margin-top: 1.3em;
   border: 2px solid var(--button-color-bg);
   border-radius: var(--border-radius);
   padding: 0 1em;
 
   text-align: center;
-  line-height: var(--size-touchable);
 
+  font-family: headline, sans-serif;
+  line-height: var(--size-touchable);
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;

@@ -53,11 +53,11 @@ feeJS.shiftForm = function(target) {
 
   // shift form
   // ----------
-  $('.js-shiftableForm').detach().appendTo($(target).closest('.c-comment__text'));
+  $('.js-shiftableForm').detach().appendTo($(target).closest('.js-shiftFormAnchor'));
 
   // show 'cancel reply' button
   // -------------------------
-  $('.c-comments__title .c-button').removeClass('is-hidden');
+  $('.js-shiftbackForm').removeClass('is-hidden');
 
   // set 'replyTo' value
   // -------------------
@@ -76,11 +76,11 @@ feeJS.shiftbackForm = function() {
 
   // shift form back to original position
   // ------------------------------------
-  $('.js-shiftableForm').detach().appendTo('.o-comments');
+  $('.js-shiftableForm').detach().appendTo('.js-shiftFormHome');
 
   // remove 'cancel reply' button
   // ----------------------------
-  $('.c-comments__title .c-button').addClass('is-hidden');
+  $('.js-shiftbackForm').addClass('is-hidden');
 
   // reset 'replyTo' value
   // ---------------------

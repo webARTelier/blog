@@ -4,7 +4,6 @@
 
 
 
-adsfasdf
 
 
 <?php include 'admin_html_footer.php'; ?>

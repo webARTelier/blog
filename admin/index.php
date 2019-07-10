@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // correct password
     // ----------------
-    if(password_verify($_POST['password'], $conf_pwHash)) {
+    if(password_verify($_POST['input_password'], $conf_pwHash)) {
 
       // set user session variable
       // -------------------------
@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     // incorrect password:
-    // do nothing (intentionally!) ;)
+    // do (intentionally!) nothing ;)
   }
 }
 
@@ -84,8 +84,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   </head>
   <body>
 
+
+
     <!-- navigation -->
-    <?php include 'admin_html_navigation.php'; ?>
+    <?php include 'admin_html_navigation_login.php'; ?>
     <!-- end navigation -->
 
 
@@ -95,7 +97,31 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-      <?php include 'admin_html_footer.php'; ?>
+      <!-- login form -->
+      <form id="target-comment" action="" method="post">
+
+        <h3 class="c-post__headline">Login</h3>
+
+        <label class="c-label" for="input_password">Website</label>
+        <input id="input_password" class="c-input" name="input_password">
+
+        <button class="c-button js-submit">
+          <span class="c-button__flex">
+            <span class="c-button__text">anmelden</span>
+            <svg class="c-button__icon"><use xlink:href="../images/icons.svg#icon-plane"></use></svg>
+          </span>
+        </button>
+
+      </form>
+      <!-- end login form -->
+
+
 
     </div>
+    <!-- end page content -->
 
+
+
+    <!-- page footer -->
+    <?php include 'admin_html_footer.php'; ?>
+    <!-- end page footer -->

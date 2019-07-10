@@ -149,19 +149,6 @@
 
 
 
-// set styles for default headlines
-// --------------------------------
-@mixin typo-headline {
-  font-family: 'headline', sans-serif;
-  line-height: 1;
-}
-
-
-
-// -----------------------------------------------------------------------
-
-
-
 // bind tags to default typo styles
 // --------------------------------
 body {
@@ -177,33 +164,4 @@ strong {
 
 small {
   @include typo-small;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @include typo-headline;
-}
-
-
-
-// -----------------------------------------------------------------------
-
-
-
-// UTILITY TYPOGRAPHY CLASSES
-// ==========================
-.u-copy {
-  @include typo-copy;
-}
-
-.u-copy-medium {
-  @include typo-copy-medium;
-}
-
-.u-copy-bold {
-  @include typo-copy-bold;
 }

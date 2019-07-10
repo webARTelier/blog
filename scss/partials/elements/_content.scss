@@ -24,31 +24,6 @@
 
 
 
-.c-pagetitle {
-  @include typo-headline;
-
-  margin-bottom: 8%;
-  padding: 3%;
-  max-width: var(--maxwidth-content);
-
-  font-size: 20px;
-  font-weight: 700;
-  text-transform: uppercase;
-
-  background-color: shade(white, 4);
-
-  @include vp-nav-desktop {
-    padding: 2%;
-    font-size: 24px;
-  }
-}
-
-
-
-// -----------------------------------------------------------------------
-
-
-
 .c-scrollContainer {
   margin: 0 0 14px;
   overflow: auto;

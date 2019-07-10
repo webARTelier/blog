@@ -75,7 +75,7 @@
 
 
           <!-- comments -->
-          <div class="o-comments">
+          <div class="l-comments js-shiftFormHome">
 
             <h3 class="c-comments__title u-spaceTop">Drei Kommentare</h3>
 
@@ -90,7 +90,7 @@
               <div class="c-comment__content">
                 <div class="c-comment__author">ocean king royal jelly</div>
                 <div class="c-comment__date">01.03.2019 um 0:43 Uhr</div>
-                <div class="c-comment__text">
+                <div class="c-comment__text js-shiftFormAnchor">
                   <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p>
                   <a class="c-comment__reply js-shiftForm" href="javascript:;">antworten →</a>
                 </div>
@@ -109,7 +109,7 @@
 
                     <div class="c-comment__author">ocean king royal jelly</div>
                     <div class="c-comment__date">01.03.2019 um 0:43 Uhr</div>
-                    <div class="c-comment__text">
+                    <div class="c-comment__text js-shiftFormAnchor">
                       <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p>
                       <a class="c-comment__reply js-shiftForm" href="javascript:;">antworten →</a>
                     </div>
@@ -128,7 +128,7 @@
 
                         <div class="c-comment__author">ocean king royal jelly</div>
                         <div class="c-comment__date">01.03.2019 um 0:43 Uhr</div>
-                        <div class="c-comment__text">
+                        <div class="c-comment__text js-shiftFormAnchor">
                           <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p>
                           <a class="c-comment__reply js-shiftForm" href="javascript:;">antworten →</a>
                         </div>
@@ -155,8 +155,8 @@
             <form id="target-comment" class="c-comment__form js-prefill js-shiftableForm">
 
               <h3 class="c-comments__title">
-                Sag was&nbsp;
-                <span class="c-button c-button--small is-hidden js-shiftbackForm">doch nicht</span>
+                Kommentar&nbsp;
+                <span class="c-button c-button--small is-hidden js-shiftbackForm">cancel</span>
               </h3>
 
               <label class="c-label" for="input_comment">Kommentar*</label>
