@@ -55,14 +55,16 @@ feeJS.smoothScrollToTop = function() {
 
 // smooth scrolling to anchor
 // --------------------------
-feeJS.smoothScrollToAnchor = function() {
-  if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+feeJS.smoothScrollToAnchor = function(target) {
+  if(location.pathname.replace(/^\//,'') == target.pathname.replace(/^\//,'') && location.hostname == target.hostname) {
 
-    var target = $(this.hash);
-    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-    if (target.length) {
+    var scrolltarget = $(target.hash);
+    var fixedOffset = 0;
+
+    scrolltarget = scrolltarget.length? scrolltarget : $('[name=' + target.hash.slice(1) +']');
+    if (scrolltarget.length) {
       $('html, body').animate({
-        scrollTop: target.offset().top
+        scrollTop: scrolltarget.offset().top - fixedOffset
       }, 1000);
       return false;
     }
