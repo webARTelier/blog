@@ -103,7 +103,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h3 class="c-post__headline">Login</h3>
 
         <label class="c-label" for="input_password">Website</label>
-        <input id="input_password" class="c-input" name="input_password">
+        <input id="input_password" class="c-input" type="password" name="input_password">
 
         <button class="c-button js-submit">
           <span class="c-button__flex">

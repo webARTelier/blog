@@ -74,7 +74,7 @@
 
 
 
-    <div class="c-divider"></div>
+    <div class="c-divider c-divider--large"></div>
 
 
 

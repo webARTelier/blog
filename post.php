@@ -95,7 +95,9 @@
                   <a class="c-comment__reply js-shiftForm" href="javascript:;">antworten →</a>
                 </div>
 
-                <div class="c-divider--small"></div>
+
+
+                <div class="c-divider c-divider--small"></div>
 
 
 
@@ -114,7 +116,7 @@
                       <a class="c-comment__reply js-shiftForm" href="javascript:;">antworten →</a>
                     </div>
 
-                    <div class="c-divider--small"></div>
+                    <div class="c-divider c-divider--small"></div>
 
 
 
@@ -137,13 +139,9 @@
                     </div>
                     <!-- end comment -->
 
-
-
                   </div>
                 </div>
                 <!-- end comment -->
-
-
 
               </div>
             </div>
@@ -152,7 +150,9 @@
 
 
             <!-- comment form -->
-            <form id="target-comment" class="c-comment__form js-prefill js-shiftableForm">
+            <form id="target-comment" class="js-prefill js-shiftableForm">
+
+              <div class="c-divider c-divider--small"></div>
 
               <h3 class="c-comments__title">
                 Kommentar&nbsp;
@@ -184,12 +184,8 @@
             </form>
             <!-- end comment form -->
 
-
-
           </div>
           <!-- end comments -->
-
-
 
         </div>
         <!-- end post content -->
@@ -197,12 +193,8 @@
       </div>
       <!-- end wrapper meta/post content -->
 
-
-
     </div>
     <!-- end post -->
-
-
 
   </div>
   <!-- end page content -->
