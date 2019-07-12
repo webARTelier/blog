@@ -3,6 +3,7 @@
 session_start();
 
 include '../inc/config.inc.php';
+include '../inc/class_dbo.inc.php';
 
 
 // logged in?

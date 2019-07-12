@@ -1,0 +1,49 @@
+
+
+
+// ================================================================
+
+// ADDITIONAL ADMIN CONTENT STYLES
+
+// ================================================================
+
+
+
+.c-headline__admin {
+  font-family: headline, sans-serif;
+  text-decoration: none;
+  letter-spacing: -1px;
+
+  color: var(--color-copy);
+
+
+
+  &--1 {
+    @include responsive-font(6vw, 36px, 80px);
+  }
+}
+
+
+
+.c-link-admin {
+  display: inline-flex;
+  align-items: baseline;
+
+  margin-top: 0.5em;
+
+  text-decoration: none;
+  color: var(--color-copy);
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--color-primary);
+  }
+
+
+
+  &--date {
+    margin-left: 1em;
+    font-size: 0.75em;
+    color: shade(white, 30);
+  }
+}

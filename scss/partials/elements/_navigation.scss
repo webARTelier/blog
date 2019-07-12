@@ -109,6 +109,12 @@
       text-decoration: underline;
       color: tint(black, 25);
     }
+
+    &.is-active {
+      @include typo-bold;
+
+      pointer-events: none;
+    }
   }
 }
 

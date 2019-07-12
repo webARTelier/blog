@@ -23,7 +23,7 @@
           <div class="c-logo__admin">Admin</div>
         </a>
 
-        <a class="c-nav__link c-nav__link--admin blog" href="javascript:;">blog</a>
+        <a class="c-nav__link c-nav__link--admin blog is-active" href="javascript:;">posts</a>
         <a class="c-nav__link c-nav__link--admin about" href="javascript:;">über mich</a>
       </div>
     </div>

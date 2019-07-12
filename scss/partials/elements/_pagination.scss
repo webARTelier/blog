@@ -13,6 +13,7 @@
   display: inline-flex;
   justify-content: space-between;
 
+  margin-top: 2em;
 
 
   &__item {
@@ -34,23 +35,23 @@
     justify-content: center;
     align-items: center;
 
-    border: 1px solid var(--color-main);
+    border: 1px solid var(--color-primary);
     text-decoration: none;
-    color: var(--color-main);
-    background-color: var(--color-contrast-light);
+    color: var(--color-primary);
+    background-color: white;
 
     transition: all var(--anim-dur) var(--anim-ease);
 
     &.is-active,
     &:hover {
-      color: var(--color-contrast);
-      background-color: var(--color-main);
+      color: white;
+      background-color: var(--color-primary);
     }
 
     &.is-inactive {
       border-color: shade(white, 20);
       color: shade(white, 20);
-      background-color: shade(white, 3);
+      background-color: white;
 
       pointer-events: none;
     }

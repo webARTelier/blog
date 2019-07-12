@@ -53,13 +53,13 @@
   }
 
   td {
-    border-bottom: 1px solid var(--color-main);
+    border-bottom: 1px solid var(--color-primary);
   }
 
   th {
     @include typo-bold;
 
-    border-bottom: 2px solid var(--color-main);
+    border-bottom: 2px solid var(--color-primary);
     color: var(--color-copy);
     background-color: white;
   }

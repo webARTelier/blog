@@ -26,7 +26,7 @@
     padding: 0.5em 1em;
     cursor: pointer;
 
-    background-color: var(--color-main);
+    background-color: var(--color-primary);
 
     transition: all var(--anim-dur) var(--anim-ease);
 
@@ -49,7 +49,7 @@
     transition: all var(--anim-dur) var(--anim-ease);
 
     .is-open & {
-      color: var(--color-main);
+      color: var(--color-primary);
     }
   }
 
@@ -63,7 +63,7 @@
 
     .is-open & {
       transform: rotate(180deg);
-      fill: var(--color-main);
+      fill: var(--color-primary);
     }
   }
 

@@ -8,7 +8,7 @@ $db_access = array(
   'localhost',
   'root',
   'sqladmin',
-  'credit'
+  'blog'
 );
 
 
