@@ -26,3 +26,8 @@ if($conf_devMode) { ?>
 <script src="js/dev_pageinfos.js"></script>
 
 <?php } ?>
+
+
+
+</body>
+</html>

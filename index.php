@@ -1,6 +1,6 @@
+<!-- page head -->
 <?php include '_html_head.php'; ?>
-
-<body id="blog">
+<!-- end page head -->
 
 
 
@@ -143,8 +143,3 @@
   <!-- page footer -->
   <?php include '_html_footer.php'; ?>
   <!-- end page footer -->
-
-
-
-</body>
-</html>

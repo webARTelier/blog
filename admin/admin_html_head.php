@@ -27,3 +27,5 @@ if(!$_SESSION['admin']) {
     <link rel="stylesheet" href="../css/admin.css">
 
   </head>
+
+  <body>

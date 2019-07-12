@@ -9,7 +9,7 @@
         <svg class="c-tabNav__icon c-tabNav__icon--admin"><use xlink:href="../images/icons.svg#icon-menu"></use></svg>
       </div>
       <div class="c-tabNav__item c-tabNav__item--admin js-chooseTab" data-tabtarget="#asideMenu">
-        <svg class="c-tabNav__icon  c-tabNav__icon--admin"><use xlink:href="../images/icons.svg#icon-folder"></use></svg>
+        <svg class="c-tabNav__icon  c-tabNav__icon--admin"><use xlink:href="../images/icons.svg#icon-bubble"></use></svg>
       </div>
     </div>
     <!-- end tab navigation -->

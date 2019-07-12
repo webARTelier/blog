@@ -98,11 +98,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
       <!-- login form -->
-      <form id="target-comment" action="" method="post">
+      <form id="target-comment" method="post">
 
         <h3 class="c-post__headline">Login</h3>
 
-        <label class="c-label" for="input_password">Website</label>
+        <label class="c-label" for="input_password">Passwort</label>
         <input id="input_password" class="c-input" type="password" name="input_password">
 
         <button class="c-button js-submit">
