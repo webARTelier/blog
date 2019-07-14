@@ -1,3 +1,9 @@
+<?php
+
+include 'inc/config.inc.php';
+include_once 'inc/class_dbo.inc.php';
+
+?>
 <div class="c-nav">
   <div class="c-nav__scrollable">
 

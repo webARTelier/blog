@@ -48,6 +48,7 @@ $rs_posts
   echo $rs_posts->pagination_html;
 
   ?>
+
 </div>
 <!-- end page content -->
 

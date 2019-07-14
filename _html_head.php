@@ -1,4 +1,9 @@
-<?php include 'inc/config.inc.php'; ?>
+<?php
+
+include 'inc/config.inc.php';
+include 'inc/class_dbo.inc.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="de">
@@ -14,4 +19,4 @@
 
   </head>
 
-  <body>
+  <body<?php if(isset($pageID)) { echo ' id="'.$pageID.'"'; } ?>>

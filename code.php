@@ -1,0 +1,3 @@
+<div class="c-scrollContainer">
+<pre><code class="c-code">&period;c-pagetitle &lcub;&NewLine;  &commat;include typo-headline&semi;&NewLine;&NewLine;  margin-bottom&colon; 8&percnt;&semi;&NewLine;  padding&colon; 3&percnt;&semi;&NewLine;  max-width&colon; var&lpar;--maxwidth-content&rpar;&semi;&NewLine;&NewLine;  font-size&colon; 20px&semi;&NewLine;  font-weight&colon; 700&semi;&NewLine;  text-transform&colon; uppercase&semi;&NewLine;&NewLine;  background-color&colon; shade&lpar;white&comma; 4&rpar;&semi;&NewLine;&NewLine;  &commat;include vp-nav-desktop &lcub;&NewLine;    padding&colon; 2&percnt;&semi;&NewLine;    font-size&colon; 24px&semi;&NewLine;  &rcub;&NewLine;&rcub;</code></pre>
+</div>
