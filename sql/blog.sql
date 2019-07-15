@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 14. Jul 2019 um 22:51
+-- Erstellungszeit: 15. Jul 2019 um 23:10
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.11
 
@@ -50,6 +50,7 @@ INSERT INTO `categories` (`ID`, `category`) VALUES
 
 CREATE TABLE `comments` (
   `ID` int(11) NOT NULL,
+  `online` tinyint(4) NOT NULL,
   `created` datetime NOT NULL,
   `articleID` int(11) NOT NULL,
   `replyTo` int(11) NOT NULL,
@@ -61,12 +62,9 @@ CREATE TABLE `comments` (
 -- Daten für Tabelle `comments`
 --
 
-INSERT INTO `comments` (`ID`, `created`, `articleID`, `replyTo`, `input_name`, `input_comment`) VALUES
-(1, '2019-07-14 09:47:00', 12, 0, 'Der Kommentator', 'Dies ist der erste Kommentar für Blogpost 12'),
-(2, '2019-07-14 09:48:00', 12, 0, 'Der Plagiator', 'Dies ist der zweite Kommentar für Blogpost 12'),
-(3, '2019-07-14 11:11:00', 12, 1, 'Der Antworter', 'Dies ist eine Antwort auf den ersten Kommentar'),
-(4, '2019-07-14 22:45:00', 12, 1, 'Der zweite Antworter', 'Dies ist noch eine Antwort auf den ersten Post'),
-(5, '2019-07-14 22:49:00', 12, 3, 'Der Schachteler', 'Antwort auf die ersten Antwort');
+INSERT INTO `comments` (`ID`, `online`, `created`, `articleID`, `replyTo`, `input_name`, `input_comment`) VALUES
+(1, 0, '2019-07-14 09:47:00', 12, 0, 'Der Kommentator', 'Dies ist der erste Kommentar für Blogpost 12'),
+(2, 0, '2019-07-14 09:48:00', 12, 0, 'Der Plagiator', 'Dies ist der zweite Kommentar für Blogpost 12');
 
 -- --------------------------------------------------------
 

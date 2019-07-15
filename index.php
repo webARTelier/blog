@@ -53,8 +53,6 @@ $rs_posts
   // ---------------
   $html_divider = '';
 
-
-
   while(!$rs_posts->EOF) {
 
     echo $html_divider;

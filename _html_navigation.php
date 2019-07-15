@@ -25,7 +25,7 @@ include_once 'inc/class_dbo.inc.php';
     <!-- tab content item -->
     <div id="mainMenu" class="c-tab js-tabContent is-active">
       <div class="c-nav__items">
-        <a class="c-logo" href="javascript:;">
+        <a class="c-logo" href="index.php">
           <img class="c-logo__img" src="images/logo_webartelier.svg" alt="webARTelier">
         </a>
 

@@ -1,3 +1,80 @@
+<?php
+
+// submitted comment?
+// ------------------
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+  include 'inc/class_gump.inc.php';
+
+
+
+  // sanitize submitted data
+  // -----------------------
+  $gump = new GUMP();
+  $_POST_sanitized = $gump->sanitize($_POST);
+
+
+
+  // validate submitted data
+  // -----------------------
+  $gump->validation_rules(array(
+    'articleID'                => 'required',
+    'input_name'        => 'required',
+    'input_comment'     => 'required'
+  ));
+
+
+
+  // trim/sanitize submitted data
+  // ----------------------------
+  $gump->filter_rules(array(
+    'articleID'                => 'trim|sanitize_numbers',
+    'input_name'        => 'trim|sanitize_string',
+    'input_comment'     => 'trim|sanitize_string'
+  ));
+
+
+
+  // set field description label for error handling
+  // ----------------------------------------------
+  GUMP::set_field_name('input_name', 'Name');
+  GUMP::set_field_name('input_comment', 'Kommentar');
+
+
+
+  $_POST_validated = $gump->run($_POST_sanitized);
+
+
+
+  // ===================================================================
+
+
+
+  // validation successful
+  // ---------------------
+  if($_POST_validated) {
+
+    // add current date and store data in db
+    // -------------------------------------
+    $_POST_validated['created'] = date("Y-m-d H:i:s");
+    $store_comment = new DBO(...$db_access);
+    $store_comment->store($_POST_validated, 'comments');
+
+    // prepare message
+    // ---------------
+    $modal = 'Vielen Dank für Ihren Kommentar!<br>Er wird so schnell wie möglich freigeschaltet.';
+  }
+
+
+
+  // validation failed
+  // -----------------
+  $errors = $gump->get_readable_errors(true);
+}
+?>
+
+
+
 <!-- page head -->
 <?php
 
@@ -44,34 +121,15 @@ if(isset($_GET['ID'])) {
     ->_orderby('created')
     ->fetch();
 
+  $numbers = array('Noch keine', 'Ein', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn', 'Elf', 'Zwölf');
 
+  ($numbers[$rs_comments->rs_totalrows] != '')
+  ? $label_number = $numbers[$rs_comments->rs_totalrows]
+    : $label_number = $numbers[$rs_comments->rs_totalrows];
 
-  // sort comments and replies
-  // -------------------------
-  $comments_sorted = [];
-  $exclude = [];
-
-  while(!$rs_comments->EOF) {
-
-    if(!in_array($rs_comments->rs_currow, $exclude)) {
-      $comments_sorted[] = $rs_comments->recordset[$rs_comments->rs_currow];
-      $replies = $rs_comments->find_rows('replyTo', $rs_comments->field('ID'));
-
-      if(!empty($replies)) {
-        foreach($replies AS $reply) {
-          $comments_sorted[] = $rs_comments->recordset[$reply];
-          $exclude[] = $reply;
-        }
-      }
-    }
-
-    echo '<pre>';
-    print_r($comments_sorted);
-    echo '</pre>';
-    echo '<hr>';
-
-    $rs_comments->move_next();
-  }
+  ($rs_comments->rs_totalrows != 1)
+  ? $label_headline = 'Kommentare'
+    : $label_headline = 'Kommentar';
 }
 
 ?>
@@ -79,7 +137,7 @@ if(isset($_GET['ID'])) {
 
 
 <!-- navigation -->
-<?php //include '_html_navigation.php'; ?>
+<?php include '_html_navigation.php'; ?>
 <!-- end navigation -->
 
 
@@ -106,7 +164,7 @@ if(isset($_GET['ID'])) {
 
     <div class="c-post__time">
       <time datetime="<?php echo $rs_post->field('created'); ?>"><?php echo date("d.m.Y", strtotime($rs_post->field('created'))); ?></time>
-      | WEB<span class="u-color-primary">ART</span>ELIER
+      | web<span class="u-color-primary">art</span>elier
     </div>
 
     <a href="javascript:;">
@@ -144,87 +202,57 @@ if(isset($_GET['ID'])) {
         <!-- comments -->
         <div class="l-comments js-shiftFormHome">
 
-          <h3 class="c-comments__title u-spaceTop">Drei Kommentare</h3>
+          <h3 class="c-comments__title u-spaceTop">
+            <?php echo $label_number.' '.$label_headline; ?>
+          </h3>
 
+          <?php
 
+    $divider = '';
 
+    while(!$rs_comments->EOF) {
+
+      echo $divider;
+
+          ?>
           <!-- comment -->
-          <div class="c-comment" data-id="1">
+          <div class="c-comment" data-id="<?php echo $rs_comments->field('ID'); ?>">
             <div class="c-comment__avatar">
               <svg class="c-comment__icon"><use xlink:href="images/icons.svg#icon-user"></use></svg>
             </div>
 
             <div class="c-comment__content">
-              <div class="c-comment__author">ocean king royal jelly</div>
-              <div class="c-comment__date">01.03.2019 um 0:43 Uhr</div>
+              <div class="c-comment__author"><?php echo $rs_comments->field('input_name'); ?></div>
+              <time class="c-comment__date" datetime="<?php echo $rs_comments->field('created'); ?>">
+                <?php echo date("d.m.Y", strtotime($rs_comments->field('created'))); ?> um
+                <?php echo date("H:i:s", strtotime($rs_comments->field('created'))); ?> Uhr
+              </time>
               <div class="c-comment__text js-shiftFormAnchor">
-                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p>
-                <a class="c-comment__reply js-shiftForm" href="javascript:;">antworten →</a>
+                <p><?php echo nl2br($rs_comments->field('input_comment')); ?></p>
               </div>
-
-
-
-              <div class="c-divider c-divider--small"></div>
-
-
-
-              <!-- comment -->
-              <div class="c-comment" data-id="2">
-                <div class="c-comment__avatar">
-                  <svg class="c-comment__icon"><use xlink:href="images/icons.svg#icon-user"></use></svg>
-                </div>
-
-                <div class="c-comment__content">
-
-                  <div class="c-comment__author">ocean king royal jelly</div>
-                  <div class="c-comment__date">01.03.2019 um 0:43 Uhr</div>
-                  <div class="c-comment__text js-shiftFormAnchor">
-                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p>
-                    <a class="c-comment__reply js-shiftForm" href="javascript:;">antworten →</a>
-                  </div>
-
-                  <div class="c-divider c-divider--small"></div>
-
-
-
-                  <!-- comment -->
-                  <div class="c-comment" data-id="3">
-                    <div class="c-comment__avatar">
-                      <svg class="c-comment__icon"><use xlink:href="images/icons.svg#icon-user"></use></svg>
-                    </div>
-
-                    <div class="c-comment__content">
-
-                      <div class="c-comment__author">ocean king royal jelly</div>
-                      <div class="c-comment__date">01.03.2019 um 0:43 Uhr</div>
-                      <div class="c-comment__text js-shiftFormAnchor">
-                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</p>
-                        <a class="c-comment__reply js-shiftForm" href="javascript:;">antworten →</a>
-                      </div>
-
-                    </div>
-                  </div>
-                  <!-- end comment -->
-
-                </div>
-              </div>
-              <!-- end comment -->
 
             </div>
           </div>
           <!-- end comment -->
 
+          <?php
+
+      $divider = '<div class="c-divider c-divider--small"></div>';
+      $rs_comments->move_next();
+    }
+
+          ?>
+
 
 
           <!-- comment form -->
-          <form id="target-comment" class="js-prefill js-shiftableForm">
+          <form id="target-comment" class="js-prefill js-shiftableForm" action="<?php echo $_SERVER['PHP_SELF'].'?ID='.$_GET['ID']; ?>" method="post">
 
             <div class="c-divider c-divider--small"></div>
 
-            <h3 class="c-comments__title">
-              Kommentar&nbsp;
-              <span class="c-button c-button--small is-hidden js-shiftbackForm">cancel</span>
-            </h3>
+            <h3 class="c-comments__title">Kommentar</h3>
+
+            <?php if(isset($errors)) { echo $errors; } ?>
 
             <label class="c-label" for="input_name">Name*</label>
             <input id="input_name" class="c-input" name="input_name" required>
@@ -232,8 +260,11 @@ if(isset($_GET['ID'])) {
             <label class="c-label" for="input_comment">Kommentar*</label>
             <textarea id="input_comment" class="c-input" name="input_comment" cols="45" rows="8" maxlength="65525" required></textarea>
 
-            <input id="input_replyTo" name="antwortenTo" value="">
+            <input id="input_replyTo" name="replyTo" value="">
             <input id="input_remark" class="c-input" name="input_remark">
+
+            <input type="hidden" name="email">
+            <input type="hidden" name="articleID" value="<?php echo $rs_post->field('ID'); ?>">
 
             <button class="c-button js-submit">
               <span class="c-button__flex">

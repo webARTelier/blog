@@ -67,6 +67,23 @@
 
 
 
+// gump error messages
+// -------------------
+.gump-error-message {
+  display: block;
+
+  padding: 0.2em 0.5em;
+
+  color: white;
+  background-color: var(--color-primary);
+}
+
+
+
+// -----------------------------------------------------------------------
+
+
+
 .c-divider {
   border-color: shade(white, 6);
 
