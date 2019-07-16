@@ -128,6 +128,7 @@ $pages: ('blog', 'about');
     .#{$page} {
       @include typo-medium;
 
+      pointer-events: none;
       color: tint(black, 25);
     }
   }

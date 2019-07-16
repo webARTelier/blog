@@ -81,7 +81,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       // ---------------
       $_SESSION['modal'] = array(
         'headline'    => 'Danke schön &#9786;',
-        'message'     => 'Dein Kommentar ist angekommen. Ich schalte ihn so schnell wie möglich frei. Danke für dein Verständnis!'
+        'message'     => 'Dein Kommentar ist angekommen und wird schnellstmöglich freigeschaltet. Danke für dein Verständnis!'
       );
     }
 
@@ -111,7 +111,7 @@ if(isset($_GET['ID'])) {
   // ----------------
   $rs_post = new DBO(...$db_access);
   $rs_post
-    ->_cols('ID, created, category, abstract, headline, text')
+    ->_cols('ID, created, img, category, abstract, headline, text')
     ->_from('posts')
     ->_where('ID = ?', $_GET['ID'])
     ->fetch();
@@ -169,12 +169,12 @@ if(isset($_GET['ID'])) {
   <!-- post -->
   <div class="c-post">
 
-    <img class="c-post__image" src="images/post_small.jpg"
-         srcset="images/post_small.jpg 768w,
-                 images/post_medium.jpg 1024w,
-                 images/post_large.jpg 1200w"
+    <img class="c-post__image" src="images/<?php echo $rs_post->field('img'); ?>_small.jpg"
+         srcset="images/<?php echo $rs_post->field('img'); ?>_small.jpg 768w,
+                 images/<?php echo $rs_post->field('img'); ?>_medium.jpg 1024w,
+                 images/<?php echo $rs_post->field('img'); ?>_large.jpg 1200w"
          sizes="(min-width: 990px) 68vw, 89vw"
-         alt="Image">
+         alt="<?php echo $rs_post->field('headline'); ?>">
 
     <div class="c-post__time">
       <time datetime="<?php echo $rs_post->field('created'); ?>"><?php echo date("d.m.Y", strtotime($rs_post->field('created'))); ?></time>
@@ -208,8 +208,8 @@ if(isset($_GET['ID'])) {
       <!-- post content -->
       <div class="c-post__content">
 
-        <div class="c-post__abstract"><p><?php echo $rs_post->field('abstract'); ?></p></div>
-        <div class="c-post__text"><?php echo $rs_post->field('text'); ?></div>
+        <div class="c-post__abstract"><p><?php echo nl2br($rs_post->field('abstract')); ?></p></div>
+        <div class="c-post__text"><?php echo nl2br($rs_post->field('text')); ?></div>
 
 
 
@@ -272,7 +272,7 @@ if(isset($_GET['ID'])) {
             <input id="input_name" class="c-input" name="input_name" required>
 
             <label class="c-label" for="input_comment">Kommentar*</label>
-            <textarea id="input_comment" class="c-input" name="input_comment" cols="45" rows="8" maxlength="65525" required></textarea>
+            <textarea id="input_comment" class="c-input" name="input_comment" rows="8" maxlength="65525" required></textarea>
 
             <input type="hidden" name="email">
             <input type="hidden" name="articleID" value="<?php echo $rs_post->field('ID'); ?>">

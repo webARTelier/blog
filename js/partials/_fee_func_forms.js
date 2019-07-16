@@ -47,6 +47,18 @@ feeJS.preventSubmitInvalid = function(target) {
 
 
 
+// textarea auto height
+// --------------------
+feeJS.autoGrow = function (target) {
+  target.style.height = (target.scrollHeight)+"px";
+}
+
+
+
+// -----------------------------------------------------------------------
+
+
+
 // shift comment form for replies
 // ------------------------------
 feeJS.shiftForm = function(target) {

@@ -83,8 +83,12 @@ $(document).ready(function() {
     feeJS.markSubmitted(this);
   });
 
-  $('.js-rangeslider').change(function() {
-    feeJS.rangeslider(this);
+  $('.js-textarea').each(function() {
+    feeJS.autoGrow(this);
+  });
+
+  $('html').on('keyup', '.js-textarea', function() {
+    feeJS.autoGrow(this);
   });
 
 

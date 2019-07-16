@@ -1,5 +1,10 @@
 <!-- page head -->
-<?php include 'admin_html_head.php'; ?>
+<?php
+
+$pageID = 'blog';
+include '_admin_html_head.php';
+
+?>
 <!-- end page head -->
 
 
@@ -16,7 +21,7 @@ if(isset($_GET['page'])) {
 }
 
 $rs_posts
-  ->_cols('ID, headline')
+  ->_cols('ID, created, headline')
   ->_from('posts')
   ->_where('ID > ?', 0)
   ->_orderby('created DESC')
@@ -27,7 +32,7 @@ $rs_posts
 
 
 <!-- navigation -->
-<?php include 'admin_html_navigation.php'; ?>
+<?php include '_admin_html_navigation.php'; ?>
 <!-- end navigation -->
 
 
@@ -39,7 +44,8 @@ $rs_posts
   <?php
 
   while(!$rs_posts->EOF) {
-    echo '<a class="c-link-admin" href="admin_post.php?ID='.$rs_posts->field('ID').'">'
+    echo '<a class="c-link--admin" href="admin_post.php?ID='.$rs_posts->field('ID').'">'
+      .'<span class="c-link--date">'.date("d.m.Y", strtotime($rs_posts->field('created'))).'</span>&nbsp;'
       .$rs_posts->field('headline')
       .'</a><br>';
     $rs_posts->move_next();
@@ -55,5 +61,5 @@ $rs_posts
 
 
 <!-- page footer -->
-<?php include 'admin_html_footer.php'; ?>
+<?php include '_admin_html_footer.php'; ?>
 <!-- end page footer -->

@@ -1,0 +1,23 @@
+
+
+
+// ================================================================
+
+// ADMIN INPUT STYLES
+
+// ================================================================
+
+
+
+.c-input--admin {
+  border: none;
+  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+
+  &:focus {
+    background-color: shade(white, 4);
+  }
+}

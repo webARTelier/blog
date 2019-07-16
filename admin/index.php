@@ -87,7 +87,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     <!-- navigation -->
-    <?php include 'admin_html_navigation_login.php'; ?>
+    <?php include '_admin_html_navigation_login.php'; ?>
     <!-- end navigation -->
 
 
@@ -123,5 +123,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     <!-- page footer -->
-    <?php include 'admin_html_footer.php'; ?>
+    <?php include '_admin_html_footer.php'; ?>
     <!-- end page footer -->

@@ -77,3 +77,19 @@
     }
   }
 }
+
+
+
+// set active navigation states
+// ----------------------------
+$pages: ('blog', 'about');
+
+@each $page in $pages {
+  ##{$page} {
+    .#{$page} {
+      @include typo-medium;
+
+      color: white !important;
+    }
+  }
+}

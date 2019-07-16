@@ -29,4 +29,4 @@ if(!$_SESSION['admin']) {
 
   </head>
 
-  <body>
+  <body<?php if(isset($pageID)) { echo ' id="'.$pageID.'"'; } ?>>

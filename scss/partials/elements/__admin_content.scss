@@ -25,25 +25,27 @@
 
 
 
-.c-link-admin {
+.c-link {
   display: inline-flex;
   align-items: baseline;
 
-  margin-top: 0.5em;
 
-  text-decoration: none;
-  color: var(--color-copy);
 
-  &:hover {
-    text-decoration: underline;
-    color: var(--color-primary);
+  &--admin {
+    display: inline-block;
+
+    text-decoration: none;
+    color: var(--color-copy);
+
+    &:hover {
+      color: var(--color-primary);
+    }
   }
 
 
 
   &--date {
-    margin-left: 1em;
-    font-size: 0.75em;
+    margin-right: 0.5em;
     color: shade(white, 30);
   }
 }

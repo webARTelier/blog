@@ -28,7 +28,7 @@ if(isset($_GET['page'])) {
 }
 
 $rs_posts
-  ->_cols('posts.ID, posts.created, posts.headline, posts.abstract, categories.category')
+  ->_cols('posts.ID, posts.created, posts.img, posts.headline, posts.abstract, categories.category')
   ->_from('posts')
   ->_leftjoin('categories', 'categories.ID = posts.category')
   ->_where('posts.ID > ?', 0)
@@ -61,12 +61,12 @@ $rs_posts
 
   <div class="c-post">
 
-    <img class="c-post__image" src="images/post_small.jpg"
-         srcset="images/post_small.jpg 768w,
-                 images/post_medium.jpg 1024w,
-                 images/post_large.jpg 1200w"
+    <img class="c-post__image" src="images/<?php echo $rs_posts->field('img'); ?>_small.jpg"
+         srcset="images/<?php echo $rs_posts->field('img'); ?>_small.jpg 768w,
+                 images/<?php echo $rs_posts->field('img'); ?>_medium.jpg 1024w,
+                 images/<?php echo $rs_posts->field('img'); ?>_large.jpg 1200w"
          sizes="(min-width: 990px) 68vw, 89vw"
-         alt="<?php echo $rs_posts->field('abstract'); ?>">
+         alt="<?php echo $rs_posts->field('headline'); ?>">
 
     <div class="c-post__time">
       <time datetime="<?php echo $rs_posts->field('created'); ?>"><?php echo date("d.m.Y", strtotime($rs_posts->field('created'))); ?></time>
