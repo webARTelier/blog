@@ -1,93 +1,106 @@
 <?php
 
+$pageID = 'blog';
+include '_html_head.php';
+
+
+
+// ===================================================================
+
+
+
 // submitted comment?
 // ------------------
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-  include 'inc/class_gump.inc.php';
+  // robot entry?
+  // ------------
+  if(empty($_POST['email'])) {
 
 
 
-  // sanitize submitted data
-  // -----------------------
-  $gump = new GUMP();
-  $_POST_sanitized = $gump->sanitize($_POST);
+    include 'inc/class_gump.inc.php';
 
 
 
-  // validate submitted data
-  // -----------------------
-  $gump->validation_rules(array(
-    'articleID'                => 'required',
-    'input_name'        => 'required',
-    'input_comment'     => 'required'
-  ));
+    // sanitize submitted data
+    // -----------------------
+    unset($_POST['email']);
+
+    $gump = new GUMP();
+    $_POST_sanitized = $gump->sanitize($_POST);
 
 
 
-  // trim/sanitize submitted data
-  // ----------------------------
-  $gump->filter_rules(array(
-    'articleID'                => 'trim|sanitize_numbers',
-    'input_name'        => 'trim|sanitize_string',
-    'input_comment'     => 'trim|sanitize_string'
-  ));
+    // validate submitted data
+    // -----------------------
+    $gump->validation_rules(array(
+      'articleID'                => 'required',
+      'input_name'        => 'required',
+      'input_comment'     => 'required'
+    ));
 
 
 
-  // set field description label for error handling
-  // ----------------------------------------------
-  GUMP::set_field_name('input_name', 'Name');
-  GUMP::set_field_name('input_comment', 'Kommentar');
+    // trim/sanitize submitted data
+    // ----------------------------
+    $gump->filter_rules(array(
+      'articleID'                => 'trim|sanitize_numbers',
+      'input_name'        => 'trim|sanitize_string',
+      'input_comment'     => 'trim|sanitize_string'
+    ));
 
 
 
-  $_POST_validated = $gump->run($_POST_sanitized);
+    // set field description label for error handling
+    // ----------------------------------------------
+    GUMP::set_field_name('input_name', 'Name');
+    GUMP::set_field_name('input_comment', 'Kommentar');
 
 
 
-  // ===================================================================
+    $_POST_validated = $gump->run($_POST_sanitized);
 
 
 
-  // validation successful
-  // ---------------------
-  if($_POST_validated) {
+    // ===================================================================
 
-    // add current date and store data in db
-    // -------------------------------------
-    $_POST_validated['created'] = date("Y-m-d H:i:s");
-    $store_comment = new DBO(...$db_access);
-    $store_comment->store($_POST_validated, 'comments');
 
-    // prepare message
-    // ---------------
-    $modal = 'Vielen Dank für Ihren Kommentar!<br>Er wird so schnell wie möglich freigeschaltet.';
+
+    // validation successful
+    // ---------------------
+    if($_POST_validated) {
+
+      // add current date and store data in db
+      // -------------------------------------
+      $_POST_validated['created'] = date("Y-m-d H:i:s");
+      $store_comment = new DBO(...$db_access);
+      $store_comment->store($_POST_validated, 'comments');
+
+      // prepare message
+      // ---------------
+      $_SESSION['modal'] = array(
+        'headline'    => 'Danke schön &#9786;',
+        'message'     => 'Dein Kommentar ist angekommen. Ich schalte ihn so schnell wie möglich frei. Danke für dein Verständnis!'
+      );
+    }
+
+
+
+    // validation failed
+    // -----------------
+    $errors = $gump->get_readable_errors(true);
   }
-
-
-
-  // validation failed
-  // -----------------
-  $errors = $gump->get_readable_errors(true);
 }
-?>
 
 
 
-<!-- page head -->
-<?php
-
-$pageID = 'blog';
-include '_html_head.php';
-
-?>
-<!-- end page head -->
+// ===================================================================
 
 
 
-<?php
-
+// get requested post
+// ------------------
 $showPost = false;
 
 if(isset($_GET['ID'])) {
@@ -118,14 +131,15 @@ if(isset($_GET['ID'])) {
     ->_cols('ID, created, replyTo, input_name, input_comment')
     ->_from('comments')
     ->_where('articleID = ?', $_GET['ID'])
+    ->_and('online = ?', 1)
     ->_orderby('created')
     ->fetch();
 
   $numbers = array('Noch keine', 'Ein', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn', 'Elf', 'Zwölf');
 
-  ($numbers[$rs_comments->rs_totalrows] != '')
+  (array_key_exists($rs_comments->rs_totalrows, $numbers))
   ? $label_number = $numbers[$rs_comments->rs_totalrows]
-    : $label_number = $numbers[$rs_comments->rs_totalrows];
+    : $label_number = $rs_comments->rs_totalrows;
 
   ($rs_comments->rs_totalrows != 1)
   ? $label_headline = 'Kommentare'
@@ -259,9 +273,6 @@ if(isset($_GET['ID'])) {
 
             <label class="c-label" for="input_comment">Kommentar*</label>
             <textarea id="input_comment" class="c-input" name="input_comment" cols="45" rows="8" maxlength="65525" required></textarea>
-
-            <input id="input_replyTo" name="replyTo" value="">
-            <input id="input_remark" class="c-input" name="input_remark">
 
             <input type="hidden" name="email">
             <input type="hidden" name="articleID" value="<?php echo $rs_post->field('ID'); ?>">

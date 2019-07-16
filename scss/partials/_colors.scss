@@ -67,15 +67,15 @@ $color-copy:                                tint(black, 25);
 
 // shadows and gradients
 // ---------------------
-.u-shadow-text {
+.u-shadow--text {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.2) !important;
 }
 
-.u-shadow-box {
+.u-shadow--box {
   box-shadow: 0 1px 1px rgba(0,0,0,0.1) !important;
 }
 
-.u-shadow-modal {
+.u-shadow--modal {
   box-shadow: 0 3px 8px rgba(0,0,0,0.4) !important;
 }
 

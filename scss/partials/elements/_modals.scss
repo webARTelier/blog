@@ -13,8 +13,12 @@
 
   --modal-minwidth:     280px;
   --modal-maxwidth:     530px;
-  --modal-padding:      20px;
+  --modal-padding:      6%;
   --modal-padding-top:  calc(var(--size-touchable) + var(--modal-padding));
+
+  @include vp-large-up {
+    --modal-padding:    3%;
+  }
 
 
 
@@ -79,5 +83,13 @@
 
     margin: auto;
     fill: var(--color-primary);
+  }
+
+
+
+  &__headline {
+    font-family: headline, sans-serif;
+    font-size: 40px;
+    letter-spacing: -1px;
   }
 }
