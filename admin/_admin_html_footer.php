@@ -9,7 +9,7 @@ if(isset($_SESSION['modal'])) {
 <!-- modal -->
 <div class="c-modal is-visible u-shadow--modal js-modal">
   <div class="c-modal__close js-closeModal">
-    <svg class="c-modal__icon"><use xlink:href="images/icons.svg#icon-close"></use></svg>
+    <svg class="c-modal__icon"><use xlink:href="../images/icons.svg#icon-close"></use></svg>
   </div>
   <?php
   echo '<h2 class="c-modal__headline">'.$_SESSION['modal']['headline'].'</h2>';

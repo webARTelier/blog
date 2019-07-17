@@ -17,18 +17,48 @@ if(!$_SESSION['admin']) {
 
 
 
+// -------------------------------------------------------------------
+
+
+
+// requested post?
+// ---------------
+$requestedPost = false;
+
+if(isset($_GET['ID'])) {
+  $requestedPost = $_GET['ID'];
+}
+
+
+
+// -------------------------------------------------------------------
+
+
+
 // submitted post?
 // ---------------
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
   $storePost = new DBO(...$db_access);
   $storePost->store($_POST, 'posts');
 
   // inserted new post?
   // ------------------
-  if($insert_lastID != '') {
-
+  if($storePost->insert_lastID != '') {
+    $requestedPost = $storePost->insert_lastID;
   }
+
+  // prepare message
+  // ---------------
+  $_SESSION['modal'] = array(
+    'headline'    => 'Daten übernommen',
+    'message'     => 'Der Post wurde in die Datenbank übernommen.'
+  );
 }
+
+
+
+// -------------------------------------------------------------------
 
 
 
@@ -36,7 +66,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 // ------------------
 $showPost = false;
 
-if(isset($_GET['ID'])) {
+if($requestedPost) {
 
 
 
@@ -46,7 +76,7 @@ if(isset($_GET['ID'])) {
   $rs_post
     ->_cols('ID, created, category, online, img, abstract, headline, text')
     ->_from('posts')
-    ->_where('ID = ?', $_GET['ID'])
+    ->_where('ID = ?', $requestedPost)
     ->fetch();
 
   $checked_online = '';
@@ -106,7 +136,7 @@ include '_admin_html_head.php';
 
       <input class="c-input c-input--admin" name="img" value="<?php echo $rs_post->field('img'); ?>" placeholder="Bildname">
 
-      <input class="c-input c-input--admin u-spaceTop" name="date" value="<?php echo $rs_post->field('created'); ?>" placeholder="Datum/Uhrzeit">
+      <input class="c-input c-input--admin u-spaceTop" name="created" value="<?php echo $rs_post->field('created'); ?>" placeholder="Datum/Uhrzeit">
 
       <div class="c-post__headline">
         <input class="c-input c-input--admin" name="headline" value="<?php echo $rs_post->field('headline'); ?>" placeholder="Überschrift">
@@ -126,7 +156,12 @@ include '_admin_html_head.php';
               <select class="c-select c-input--admin" name="category">
                 <?php
     while(!$rs_categories->EOF) {
-      echo '<option value="'.$rs_categories->field('ID').'">'.$rs_categories->field('category').'</option>';
+
+      $checked_category = '';
+      if($rs_categories->field('ID') == $rs_post->field('category')) {
+        $checked_category = ' selected';
+      }
+      echo '<option value="'.$rs_categories->field('ID').'"'.$checked_category.'>'.$rs_categories->field('category').'</option>';
       $rs_categories->move_next();
     }
                 ?>
