@@ -92,6 +92,21 @@ $rs_categories
 
 
 
+// -------------------------------------------------------------------
+
+
+
+// get comments for current post
+// -----------------------------
+$rs_comments = new DBO(...$db_access);
+$rs_comments
+  ->_cols('ID, created, input_name, input_comment')
+  ->_from('comments')
+  ->_where('articleID = ?', $requestedPost)
+  ->fetch();
+
+
+
 include '_admin_html_head.php';
 ?>
 
