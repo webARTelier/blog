@@ -11,17 +11,7 @@ include 'inc/class_dbo.inc.php';
 $pageID = 'blog';
 include '_html_head.php';
 
-?>
 
-
-
-<!-- navigation -->
-<?php include '_html_navigation.php'; ?>
-<!-- end navigation -->
-
-
-
-<?php
 
 // get data from db
 // ----------------
@@ -42,6 +32,12 @@ $rs_posts
   ->fetch();
 
 ?>
+
+
+
+<!-- navigation -->
+<?php include '_html_navigation.php'; ?>
+<!-- end navigation -->
 
 
 
@@ -79,9 +75,7 @@ $rs_posts
       | WEB<span class="u-color-primary">ART</span>ELIER
     </div>
 
-    <a href="javascript:;">
-      <h1 class="c-post__headline" ><?php echo $rs_posts->field('headline'); ?></h1>
-    </a>
+    <a class="c-post__headline c-post__headline--link" href="post.php?ID=<?php echo $rs_posts->field('ID'); ?>"><?php echo $rs_posts->field('headline'); ?></a>
 
 
 

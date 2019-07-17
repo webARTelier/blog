@@ -29,6 +29,8 @@
   display: inline-flex;
   align-items: baseline;
 
+  transition: all var(--anim-dur) var(--anim-ease);
+
 
 
   &--admin {
@@ -44,8 +46,27 @@
 
 
 
+  &--delete {
+    display: inline-block;
+
+    margin-right: 0.5em;
+
+    font-size: 1.2em;
+    text-decoration: none;
+
+    color: var(--color-primary);
+  }
+
+
+
   &--date {
     margin-right: 0.5em;
+    color: shade(white, 30);
+  }
+
+
+
+  &--offline {
     color: shade(white, 30);
   }
 }

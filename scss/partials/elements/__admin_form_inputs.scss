@@ -23,3 +23,24 @@
     background-color: shade(white, 4);
   }
 }
+
+
+
+.c-setDate {
+  @include typo-bold;
+
+  cursor: pointer;
+
+  display: inline-block;
+  margin-top: -1em;
+
+  font-size: 14px;
+  line-height: 1;
+
+  tansition: all var(--anim-dur) var(--anim-ease);
+  transform: translateY(-50%);
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}

@@ -91,6 +91,10 @@ $(document).ready(function() {
     feeJS.autoGrow(this);
   });
 
+  $('html').on('click', '.js-setDate', function() {
+    feeJS.setDate();
+  });
+
 
 
   // shift comment form for replies

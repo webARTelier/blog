@@ -23,7 +23,7 @@ if(!$_SESSION['admin']) {
 
 // requested post?
 // ---------------
-$requestedPost = false;
+$requestedPost = 0;
 
 if(isset($_GET['ID'])) {
   $requestedPost = $_GET['ID'];
@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   // ---------------
   $_SESSION['modal'] = array(
     'headline'    => 'Daten übernommen',
-    'message'     => 'Der Post wurde in die Datenbank übernommen.'
+    'message'     => 'Die Änderungen wurden in die Datenbank übernommen.'
   );
 }
 
@@ -62,45 +62,35 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-// get requested post
-// ------------------
-$showPost = false;
+// get post from db
+// ----------------
+$rs_post = new DBO(...$db_access);
+$rs_post
+  ->_cols('ID, created, category, online, img, abstract, headline, text')
+  ->_from('posts')
+  ->_where('ID = ?', $requestedPost)
+  ->fetch();
 
-if($requestedPost) {
-
-
-
-  // get post from db
-  // ----------------
-  $rs_post = new DBO(...$db_access);
-  $rs_post
-    ->_cols('ID, created, category, online, img, abstract, headline, text')
-    ->_from('posts')
-    ->_where('ID = ?', $requestedPost)
-    ->fetch();
-
-  $checked_online = '';
-  if($rs_post->field('online') == 1) {
-    $checked_online = ' checked';
-  }
-
-  // post exists? show content
-  // -------------------------
-  if(!$rs_post->EOF) {
-    $showPost = true;
-  }
+($rs_post->field('online') == 1)
+?  $checked_online = ' checked'
+  : $checked_online = '';
 
 
 
-  // get categories from db
-  // ----------------------
-  $rs_categories = new DBO(...$db_access);
-  $rs_categories
-    ->_cols('ID, category')
-    ->_from('categories')
-    ->_where('ID > ?', 0)
-    ->fetch();
-}
+// -------------------------------------------------------------------
+
+
+
+// get categories from db
+// ----------------------
+$rs_categories = new DBO(...$db_access);
+$rs_categories
+  ->_cols('ID, category')
+  ->_from('categories')
+  ->_where('ID > ?', 0)
+  ->fetch();
+
+
 
 include '_admin_html_head.php';
 ?>
@@ -118,11 +108,6 @@ include '_admin_html_head.php';
 
 
 
-  <?php
-
-  if($showPost) {
-
-  ?>
   <!-- post -->
   <form action="<?php echo $_SERVER['PHP_SELF'].'?ID='.$_GET['ID']; ?>" method="post">
     <div class="c-post">
@@ -136,7 +121,8 @@ include '_admin_html_head.php';
 
       <input class="c-input c-input--admin" name="img" value="<?php echo $rs_post->field('img'); ?>" placeholder="Bildname">
 
-      <input class="c-input c-input--admin u-spaceTop" name="created" value="<?php echo $rs_post->field('created'); ?>" placeholder="Datum/Uhrzeit">
+      <input class="c-input c-input--admin u-spaceTop js-date" name="created" value="<?php echo $rs_post->field('created'); ?>" placeholder="Datum/Uhrzeit">
+      <span class="c-setDate js-setDate">Timestamp</span>
 
       <div class="c-post__headline">
         <input class="c-input c-input--admin" name="headline" value="<?php echo $rs_post->field('headline'); ?>" placeholder="Überschrift">
@@ -155,15 +141,15 @@ include '_admin_html_head.php';
             <div class="c-meta__link">
               <select class="c-select c-input--admin" name="category">
                 <?php
-    while(!$rs_categories->EOF) {
+                while(!$rs_categories->EOF) {
 
-      $checked_category = '';
-      if($rs_categories->field('ID') == $rs_post->field('category')) {
-        $checked_category = ' selected';
-      }
-      echo '<option value="'.$rs_categories->field('ID').'"'.$checked_category.'>'.$rs_categories->field('category').'</option>';
-      $rs_categories->move_next();
-    }
+                  ($rs_categories->field('ID') == $rs_post->field('category'))
+                  ? $checked_category = ' selected'
+                    : $checked_category = '';
+
+                  echo '<option value="'.$rs_categories->field('ID').'"'.$checked_category.'>'.$rs_categories->field('category').'</option>';
+                  $rs_categories->move_next();
+                }
                 ?>
               </select>
             </div>
@@ -212,15 +198,6 @@ include '_admin_html_head.php';
     </div>
   </form>
   <!-- end post -->
-
-
-
-  <?php } else { ?>
-  <!-- post does not exist -->
-  <div class="c-post__headline">Oooops! Dieser Artikel<br>existiert leider nicht …</div>
-  <p><a class="c-post__more" href="index.php">&#8592; zurück zur Übersicht</a></p>
-  <!-- end post does not exist -->
-  <?php } ?>
 
 
 

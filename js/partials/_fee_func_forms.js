@@ -49,8 +49,21 @@ feeJS.preventSubmitInvalid = function(target) {
 
 // textarea auto height
 // --------------------
-feeJS.autoGrow = function (target) {
+feeJS.autoGrow = function(target) {
   target.style.height = (target.scrollHeight)+"px";
+}
+
+
+
+// -----------------------------------------------------------------------
+
+
+
+// set mysql datetime timestamp
+// ----------------------------
+feeJS.setDate = function() {
+  var d = new Date();
+  $('.js-date').val(new Date().toISOString().split('T')[0]+' '+d.toTimeString().split(' ')[0]);
 }
 
 

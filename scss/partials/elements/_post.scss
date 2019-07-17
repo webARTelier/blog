@@ -43,8 +43,15 @@
 
     color: var(--color-copy);
 
-    &:hover {
-      text-decoration: underline;
+
+
+    &--link {
+      display: inline-block;
+      width: auto;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 

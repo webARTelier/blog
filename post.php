@@ -184,9 +184,7 @@ if(isset($_GET['ID'])) {
       | web<span class="u-color-primary">art</span>elier
     </div>
 
-    <a href="javascript:;">
-      <h1 class="c-post__headline" ><?php echo $rs_post->field('headline'); ?></h1>
-    </a>
+    <h1 class="c-post__headline" ><?php echo $rs_post->field('headline'); ?></h1>
 
 
 
