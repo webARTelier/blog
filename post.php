@@ -208,8 +208,8 @@ if(isset($_GET['ID'])) {
       <!-- post content -->
       <div class="c-post__content">
 
-        <div class="c-post__abstract"><p><?php echo nl2br($rs_post->field('abstract')); ?></p></div>
-        <div class="c-post__text"><?php echo nl2br($rs_post->field('text')); ?></div>
+        <div class="c-post__abstract"><?php echo nl2br($rs_post->field('abstract')); ?></div>
+        <div class="c-post__text"><?php echo nl2p($rs_post->field('text')); ?></div>
 
 
 

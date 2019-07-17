@@ -16,16 +16,32 @@ if(isset($_GET['ID'])) {
   // ----------------
   $rs_post = new DBO(...$db_access);
   $rs_post
-    ->_cols('ID, created, category, img, abstract, headline, text')
+    ->_cols('ID, created, category, online, img, abstract, headline, text')
     ->_from('posts')
     ->_where('ID = ?', $_GET['ID'])
     ->fetch();
+
+  $checked_online = '';
+  if($rs_post->field('online') == 1) {
+    $checked_online = ' checked';
+  }
 
   // post exists? show content
   // -------------------------
   if(!$rs_post->EOF) {
     $showPost = true;
   }
+
+
+
+  // get categories from db
+  // ----------------------
+  $rs_categories = new DBO(...$db_access);
+  $rs_categories
+    ->_cols('ID, category')
+    ->_from('categories')
+    ->_where('ID > ?', 0)
+    ->fetch();
 }
 ?>
 
@@ -72,14 +88,29 @@ if(isset($_GET['ID'])) {
 
         <!-- post meta -->
         <div class="c-meta">
+
           <div class="c-meta__item">
-            <svg class="c-meta__icon"><use xlink:href="images/icons.svg#icon-list"></use></svg>
-            <a class="c-meta__link" href="javascript:;">general</a>
+            <svg class="c-meta__icon"><use xlink:href="../images/icons.svg#icon-list"></use></svg>
+            <div class="c-meta__link">
+              <select class="c-select c-input--admin" name="category">
+                <?php
+    while(!$rs_categories->EOF) {
+      echo '<option value="'.$rs_categories->field('ID').'">'.$rs_categories->field('category').'</option>';
+      $rs_categories->move_next();
+    }
+                ?>
+              </select>
+            </div>
           </div>
+
           <div class="c-meta__item">
-            <svg class="c-meta__icon"><use xlink:href="images/icons.svg#icon-bubble"></use></svg>
-            <a class="c-meta__link" href="#target-comment">kommentieren</a>
+            <div class="c-meta__link">
+              <input name="online" type="hidden" value ="0">
+              <input id="online" class="c-checkbox" name="online" type="checkbox" value="1" <?php echo $checked_online; ?>>
+              <label class="c-checkbox__label" for="online">online</label>
+            </div>
           </div>
+
         </div>
         <!-- end post meta -->
 
@@ -96,6 +127,15 @@ if(isset($_GET['ID'])) {
           <div class="c-post__text">
             <textarea class="c-input c-input--admin js-textarea"><?php echo $rs_post->field('text'); ?></textarea>
           </div>
+
+          <input type="hidden" name="ID" value="<?php echo $rs_post->field('ID'); ?>">
+
+          <button class="c-button js-submit">
+            <span class="c-button__flex">
+              <span class="c-button__text">eintragen</span>
+              <svg class="c-button__icon"><use xlink:href="../images/icons.svg#icon-plane"></use></svg>
+            </span>
+          </button>
 
         </div>
         <!-- end post content -->
