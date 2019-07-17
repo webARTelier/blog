@@ -1,23 +1,3 @@
-<?php
-
-session_start();
-
-include '../inc/config.inc.php';
-include '../inc/func.inc.php';
-include '../inc/class_dbo.inc.php';
-
-
-
-// logged in?
-// ----------
-if(!$_SESSION['admin']) {
-  header('Location: '.$conf_defaultLoginPage);
-  exit;
-}
-
-
-
-?>
 <!DOCTYPE html>
 <html lang="de">
   <head>

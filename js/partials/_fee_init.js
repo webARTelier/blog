@@ -83,11 +83,11 @@ $(document).ready(function() {
     feeJS.markSubmitted(this);
   });
 
-  $('.js-textarea').each(function() {
+  $('.js-autogrow').each(function() {
     feeJS.autoGrow(this);
   });
 
-  $('html').on('keyup', '.js-textarea', function() {
+  $('html').on('keyup', '.js-autogrow', function() {
     feeJS.autoGrow(this);
   });
 

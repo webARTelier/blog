@@ -1,6 +1,34 @@
 <?php
 
-include '_admin_html_head.php';
+session_start();
+
+include '../inc/config.inc.php';
+include '../inc/func.inc.php';
+include '../inc/class_dbo.inc.php';
+
+
+
+// logged in?
+// ----------
+if(!$_SESSION['admin']) {
+  header('Location: '.$conf_defaultLoginPage);
+  exit;
+}
+
+
+
+// submitted post?
+// ---------------
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $storePost = new DBO(...$db_access);
+  $storePost->store($_POST, 'posts');
+
+  // inserted new post?
+  // ------------------
+  if($insert_lastID != '') {
+
+  }
+}
 
 
 
@@ -43,6 +71,8 @@ if(isset($_GET['ID'])) {
     ->_where('ID > ?', 0)
     ->fetch();
 }
+
+include '_admin_html_head.php';
 ?>
 
 
@@ -73,12 +103,13 @@ if(isset($_GET['ID'])) {
                    ../images/<?php echo $rs_post->field('img'); ?>_large.jpg 1200w"
            sizes="(min-width: 990px) 68vw, 89vw"
            alt="<?php echo $rs_post->field('headline'); ?>">
-      <input class="c-input c-input--admin" name="img" value="<?php echo $rs_post->field('img'); ?>">
 
-      <input class="c-input c-input--admin u-spaceTop" name="date" value="<?php echo $rs_post->field('created'); ?>">
+      <input class="c-input c-input--admin" name="img" value="<?php echo $rs_post->field('img'); ?>" placeholder="Bildname">
+
+      <input class="c-input c-input--admin u-spaceTop" name="date" value="<?php echo $rs_post->field('created'); ?>" placeholder="Datum/Uhrzeit">
 
       <div class="c-post__headline">
-        <input class="c-input c-input--admin" name="headline" value="<?php echo $rs_post->field('headline'); ?>">
+        <input class="c-input c-input--admin" name="headline" value="<?php echo $rs_post->field('headline'); ?>" placeholder="Überschrift">
       </div>
 
 
@@ -120,12 +151,12 @@ if(isset($_GET['ID'])) {
         <div class="c-post__content">
 
           <div class="c-post__abstract">
-            <textarea class="c-input c-input--admin js-textarea"><?php echo $rs_post->field('abstract'); ?></textarea>
+            <textarea class="c-input c-input--admin js-autogrow" placeholder="Abstract"><?php echo $rs_post->field('abstract'); ?></textarea>
           </div>
 
 
           <div class="c-post__text">
-            <textarea class="c-input c-input--admin js-textarea"><?php echo $rs_post->field('text'); ?></textarea>
+            <textarea class="c-input c-input--admin js-autogrow" placeholder="Text"><?php echo $rs_post->field('text'); ?></textarea>
           </div>
 
           <input type="hidden" name="ID" value="<?php echo $rs_post->field('ID'); ?>">

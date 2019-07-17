@@ -1,15 +1,21 @@
-<!-- page head -->
 <?php
 
-$pageID = 'blog';
-include '_admin_html_head.php';
+session_start();
 
-?>
-<!-- end page head -->
+include '../inc/config.inc.php';
+include '../inc/func.inc.php';
+include '../inc/class_dbo.inc.php';
 
 
 
-<?php
+// logged in?
+// ----------
+if(!$_SESSION['admin']) {
+  header('Location: '.$conf_defaultLoginPage);
+  exit;
+}
+
+
 
 // get data from db
 // ----------------
@@ -27,6 +33,10 @@ $rs_posts
   ->_orderby('created DESC')
   ->fetch();
 
+
+
+$pageID = 'blog';
+include '_admin_html_head.php';
 ?>
 
 
