@@ -1,11 +1,19 @@
 <?php
 
+session_start();
+
+include 'inc/config.inc.php';
+include 'inc/func.inc.php';
+include 'inc/class_dbo.inc.php';
+
+
+
 $pageID = 'blog';
 include '_html_head.php';
 
 
 
-// ===================================================================
+// -------------------------------------------------------------------
 
 
 
@@ -63,10 +71,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-    // ===================================================================
-
-
-
     // validation successful
     // ---------------------
     if($_POST_validated) {
@@ -95,7 +99,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-// ===================================================================
+// -------------------------------------------------------------------
 
 
 
@@ -145,7 +149,6 @@ if(isset($_GET['ID'])) {
   ? $label_headline = 'Kommentare'
     : $label_headline = 'Kommentar';
 }
-
 ?>
 
 
