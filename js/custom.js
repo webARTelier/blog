@@ -19,7 +19,6 @@ var feeJS = feeJS || {};
 // current project!
 
 //@prepros-append vendor/jquery-3.2.1.min.js
-//@prepros-append vendor/jquery-smartphoto.min.js
 
 
 

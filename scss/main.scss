@@ -52,7 +52,6 @@
 @import 'partials/elements/tables';
 @import 'partials/elements/images';
 
-@import 'partials/elements/gallery';
 @import 'partials/elements/tabs';
 @import 'partials/elements/post';
 @import 'partials/elements/comments';
@@ -69,15 +68,12 @@
 @import 'partials/elements/pagination';
 @import 'partials/elements/totop';
 @import 'partials/elements/overlays_page';
-@import 'partials/elements/overlays_images';
 
 @import 'partials/elements/tooltips';
 @import 'partials/elements/modals';
-@import 'partials/elements/spinner';
 
 
 
 // get vendor plugin styles
 // ------------------------
-@import 'partials/vendor/smartphoto/smartphoto';
 @import 'partials/vendor/cookieconsent/cookieconsent';
