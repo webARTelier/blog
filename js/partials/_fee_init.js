@@ -40,12 +40,6 @@ $(document).ready(function() {
 
 
 
-  // image lightbox/gallery
-  // ----------------------
-  $('.js-initLightbox').SmartPhoto();
-
-
-
   // toggle tabs
   // -----------
   $('html').on('click', '.js-chooseTab', function() {
