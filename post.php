@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     // trim/sanitize submitted data
     // ----------------------------
     $gump->filter_rules(array(
-      'articleID'                => 'trim|sanitize_numbers',
+      'articleID'         => 'trim|sanitize_numbers',
       'input_name'        => 'trim|sanitize_string',
       'input_comment'     => 'trim|sanitize_string'
     ));
@@ -261,7 +261,7 @@ if(isset($_GET['ID'])) {
 
 
           <!-- comment form -->
-          <form id="target-comment" class="js-prefill js-shiftableForm" action="<?php echo $_SERVER['PHP_SELF'].'?ID='.$_GET['ID']; ?>" method="post">
+          <form id="target-comment" class="js-form js-prefill js-shiftableForm" action="<?php echo $_SERVER['PHP_SELF'].'?ID='.$_GET['ID']; ?>" method="post">
 
             <div class="c-divider c-divider--small"></div>
 

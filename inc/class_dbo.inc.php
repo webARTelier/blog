@@ -21,21 +21,21 @@
 
     // fetch properties
     // ----------------
-    protected $fetch_valtypes = '';
-    protected $fetch_select = '';
-    protected $fetch_from =  '';
-    protected $fetch_innerjoin = '';
-    protected $fetch_leftjoin = '';
-    protected $fetch_where_placeholder = '';
-    protected $fetch_where_value = '';
-    protected $fetch_and_placeholder = '';
-    protected $fetch_and_value = [];
-    protected $fetch_or_placeholder = '';
-    protected $fetch_or_value = [];
-    protected $fetch_groupby = '';
-    protected $fetch_orderby = '';
-    protected $fetch_limit = '';
-    protected $fetch_offset = '';
+    protected $query_valtypes = '';
+    protected $query_select = '';
+    protected $query_from =  '';
+    protected $query_innerjoin = '';
+    protected $query_leftjoin = '';
+    protected $query_where_placeholder = '';
+    protected $query_where_value = '';
+    protected $query_and_placeholder = '';
+    protected $query_and_value = [];
+    protected $query_or_placeholder = '';
+    protected $query_or_value = [];
+    protected $query_groupby = '';
+    protected $query_orderby = '';
+    protected $query_limit = '';
+    protected $query_offset = '';
 
     // recordset in current object
     // ---------------------------
@@ -225,7 +225,7 @@
       }
 
       if($execute) {
-        $this->fetch_select = "SELECT $sql_cols";
+        $this->query_select = "SELECT $sql_cols";
         return $this;
       }
     }
@@ -234,7 +234,7 @@
 
     public function _from(string $table)
     {
-      $this->fetch_from = " FROM ".$table;
+      $this->query_from = " FROM ".$table;
       return $this;
     }
 
@@ -242,7 +242,7 @@
 
     public function _innerjoin(string $table, string $on)
     {
-      $this->fetch_innerjoin .= ' INNER JOIN '.$table. ' ON '.$on;
+      $this->query_innerjoin .= ' INNER JOIN '.$table. ' ON '.$on;
       return $this;
     }
 
@@ -250,7 +250,7 @@
 
     public function _leftjoin(string $table, string $on)
     {
-      $this->fetch_innerjoin .= ' INNER JOIN '.$table. ' ON '.$on;
+      $this->query_innerjoin .= ' INNER JOIN '.$table. ' ON '.$on;
       return $this;
     }
 
@@ -258,9 +258,9 @@
 
     public function _where(string $placeholder, $value)
     {
-      $this->fetch_where_placeholder = " WHERE ".$placeholder;
-      $this->fetch_where_value = $value;
-      $this->fetch_valtypes .= 's';
+      $this->query_where_placeholder = " WHERE ".$placeholder;
+      $this->query_where_value = $value;
+      $this->query_valtypes .= 's';
       return $this;
     }
 
@@ -268,9 +268,9 @@
 
     public function _and(string $placeholder, $value)
     {
-      $this->fetch_and_placeholder .= " AND ".$placeholder;
-      $this->fetch_and_value[] = $value;
-      $this->fetch_valtypes .= 's';
+      $this->query_and_placeholder .= " AND ".$placeholder;
+      $this->query_and_value[] = $value;
+      $this->query_valtypes .= 's';
       return $this;
     }
 
@@ -278,9 +278,9 @@
 
     public function _or(string $placeholder, $value)
     {
-      $this->fetch_or_placeholder .= " OR ".$placeholder;
-      $this->fetch_or_value[] = $value;
-      $this->fetch_valtypes .= 's';
+      $this->query_or_placeholder .= " OR ".$placeholder;
+      $this->query_or_value[] = $value;
+      $this->query_valtypes .= 's';
       return $this;
     }
 
@@ -288,7 +288,7 @@
 
     public function _groupby(string $groupby)
     {
-      $this->fetch_groupby = " GROUP BY ".$groupby;
+      $this->query_groupby = " GROUP BY ".$groupby;
       return $this;
     }
 
@@ -296,7 +296,7 @@
 
     public function _orderby(string $orderby)
     {
-      $this->fetch_orderby = " ORDER BY ".$orderby;
+      $this->query_orderby = " ORDER BY ".$orderby;
       return $this;
     }
 
@@ -304,7 +304,7 @@
 
     public function _limit(string $limit)
     {
-      $this->fetch_limit = " LIMIT ".$limit;
+      $this->query_limit = " LIMIT ".$limit;
       return $this;
     }
 
@@ -312,7 +312,7 @@
 
     public function _offset(string $offset)
     {
-      $this->fetch_offset = " OFFSET ".$offset;
+      $this->query_offset = " OFFSET ".$offset;
       return $this;
     }
 
@@ -331,19 +331,19 @@
       // --------------------------------------
       $execute = true;
 
-      if(!$this->fetch_select) {
+      if(!$this->query_select) {
         $this->EOF = true;
         $this->errormsg[] = 'No columns given for fetching recordset!';
         $execute = false;
       }
 
-      if(!$this->fetch_from) {
+      if(!$this->query_from) {
         $this->EOF = true;
         $this->errormsg[] = 'No table given for fetching recordset!';
         $execute = false;
       }
 
-      if(!$this->fetch_where_placeholder) {
+      if(!$this->query_where_placeholder) {
         $this->EOF = true;
         $this->errormsg[] = 'No condition given for fetching recordset!';
         $execute = false;
@@ -366,32 +366,32 @@
         // recordset statement
         // -------------------
         $fetch = $this->connDB->prepare("
-          $this->fetch_select
-          $this->fetch_from
-          $this->fetch_innerjoin
-          $this->fetch_leftjoin
-          $this->fetch_where_placeholder
-          $this->fetch_and_placeholder
-          $this->fetch_or_placeholder
-          $this->fetch_groupby
-          $this->fetch_orderby
-          $this->fetch_limit
-          $this->fetch_offset
+          $this->query_select
+          $this->query_from
+          $this->query_innerjoin
+          $this->query_leftjoin
+          $this->query_where_placeholder
+          $this->query_and_placeholder
+          $this->query_or_placeholder
+          $this->query_groupby
+          $this->query_orderby
+          $this->query_limit
+          $this->query_offset
         ");
 
         // binding & executing
         // -------------------
-        $bind_values[] = $this->fetch_where_value;
+        $bind_values[] = $this->query_where_value;
 
-        foreach($this->fetch_and_value as $fetch_and_value) {
-          $bind_values[] = $fetch_and_value;
+        foreach($this->query_and_value as $query_and_value) {
+          $bind_values[] = $query_and_value;
         }
 
-        foreach($this->fetch_or_value as $fetch_or_value) {
-          $bind_values[] = $fetch_or_value;
+        foreach($this->query_or_value as $query_or_value) {
+          $bind_values[] = $query_or_value;
         }
 
-        $fetch->bind_param($this->fetch_valtypes, ...$bind_values);
+        $fetch->bind_param($this->query_valtypes, ...$bind_values);
         $fetch->execute();
 
         // recordset & total rows
@@ -419,6 +419,50 @@
           return false;
         }
       }
+    }
+
+
+
+    // -------------------------------------------------------------------
+
+
+
+    // row count statement
+    // -------------------
+    public function do_count()
+    {
+      $rowCount = $this->connDB->prepare("
+        SELECT COUNT(*) as rowCount
+        $this->query_from
+        $this->query_innerjoin
+        $this->query_leftjoin
+        $this->query_where_placeholder
+        $this->query_and_placeholder
+        $this->query_or_placeholder
+      ");
+
+      // binding & executing
+      // -------------------
+      $bind_values_count = [];
+      $bind_values_count[] = $this->query_where_value;
+
+      foreach($this->query_and_value as $query_and_value) {
+        $bind_values_count[] = $query_and_value;
+      }
+
+      foreach($this->query_or_value as $query_or_value) {
+        $bind_values_count[] = $query_or_value;
+      }
+
+      $rowCount->bind_param($this->query_valtypes, ...$bind_values_count);
+      $rowCount->execute();
+
+      // recordset & row count result
+      // ----------------------------
+      $temp_count = $rowCount->get_result()->fetch_all(MYSQLI_ASSOC);
+      $result = $temp_count[0]['rowCount'];
+
+      return $result;
     }
 
 
@@ -645,27 +689,28 @@
       // -------------------
       $rowCount = $this->connDB->prepare("
         SELECT COUNT(*) as rowCount
-        $this->fetch_from
-        $this->fetch_innerjoin
-        $this->fetch_where_placeholder
-        $this->fetch_and_placeholder
-        $this->fetch_or_placeholder
+        $this->query_from
+        $this->query_innerjoin
+        $this->query_leftjoin
+        $this->query_where_placeholder
+        $this->query_and_placeholder
+        $this->query_or_placeholder
       ");
 
       // binding & executing
       // -------------------
       $bind_values_count = [];
-      $bind_values_count[] = $this->fetch_where_value;
+      $bind_values_count[] = $this->query_where_value;
 
-      foreach($this->fetch_and_value as $fetch_and_value) {
-        $bind_values_count[] = $fetch_and_value;
+      foreach($this->query_and_value as $query_and_value) {
+        $bind_values_count[] = $query_and_value;
       }
 
-      foreach($this->fetch_or_value as $fetch_or_value) {
-        $bind_values_count[] = $fetch_or_value;
+      foreach($this->query_or_value as $query_or_value) {
+        $bind_values_count[] = $query_or_value;
       }
 
-      $rowCount->bind_param($this->fetch_valtypes, ...$bind_values_count);
+      $rowCount->bind_param($this->query_valtypes, ...$bind_values_count);
       $rowCount->execute();
 
       // recordset & row count result
@@ -690,8 +735,8 @@
 
         // re-set limit & offset
         // ---------------------
-        $this->fetch_limit = ' LIMIT '.$this->pagination_entriesPerPage;
-        $this->fetch_offset = ' OFFSET '.$this->pagination_entriesPerPage * ($this->pagination_currentPage - 1);
+        $this->query_limit = ' LIMIT '.$this->pagination_entriesPerPage;
+        $this->query_offset = ' OFFSET '.$this->pagination_entriesPerPage * ($this->pagination_currentPage - 1);
 
         $this->create_pagination_html();
       }

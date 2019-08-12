@@ -29,8 +29,8 @@ include_once 'inc/class_dbo.inc.php';
           <img class="c-logo__img" src="images/logo_webartelier.svg" alt="webARTelier">
         </a>
 
-        <a class="c-nav__link blog" href="javascript:;">blog</a>
-        <a class="c-nav__link about" href="javascript:;">über mich</a>
+        <a class="c-nav__link home" href="index.php">home</a>
+        <a class="c-nav__link about"href="javascript:;">über mich</a>
       </div>
     </div>
     <!-- end tab content item -->

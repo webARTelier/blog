@@ -19,7 +19,7 @@ feeJS.hasHtml5Validation = function() {
 // mark form as submitted
 // ----------------------
 feeJS.markSubmitted = function(target) {
-  $(target).closest('form').addClass('is-submitted');
+  $(target).closest('.js-form').addClass('is-submitted');
 }
 
 

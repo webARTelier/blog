@@ -8,7 +8,7 @@ include 'inc/class_dbo.inc.php';
 
 
 
-$pageID = 'blog';
+$pageID = 'home';
 include '_html_head.php';
 
 
@@ -59,6 +59,21 @@ $rs_posts
 
     echo $html_divider;
 
+
+
+    // count comments
+    // --------------
+    $countComments = new DBO(...$db_access);
+    $comments = $countComments
+      ->_cols('ID')
+      ->_from('comments')
+      ->_where('articleID = ?', $rs_posts->field('ID'))
+      ->do_count();
+
+    ($comments == 1)
+    ? $comments_label = 'Kommentar'
+      : $comments_label = 'Kommentare';
+
   ?>
 
   <div class="c-post">
@@ -90,7 +105,7 @@ $rs_posts
         </div>
         <div class="c-meta__item">
           <svg class="c-meta__icon"><use xlink:href="images/icons.svg#icon-bubble"></use></svg>
-          <a class="c-meta__link" href="javascript:;">7 Kommentare</a>
+          <a class="c-meta__link" href="javascript:;"><?php echo $comments.' '.$comments_label; ?></a>
         </div>
       </div>
       <!-- post meta -->

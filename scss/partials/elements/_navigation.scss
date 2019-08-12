@@ -121,7 +121,7 @@
 
 // set active navigation states
 // ----------------------------
-$pages: ('blog', 'about');
+$pages: ('home', 'about');
 
 @each $page in $pages {
   ##{$page} {
