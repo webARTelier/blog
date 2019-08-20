@@ -128,26 +128,45 @@ if(isset($_GET['ID'])) {
 
 
 
-  // get comments for current post
-  // -----------------------------
-  $rs_comments = new DBO(...$db_access);
-  $rs_comments
-    ->_cols('ID, created, replyTo, input_name, input_comment')
-    ->_from('comments')
-    ->_where('articleID = ?', $_GET['ID'])
-    ->_and('online = ?', 1)
-    ->_orderby('created')
-    ->fetch();
+  if($showPost) {
 
-  $numbers = array('Noch keine', 'Ein', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn', 'Elf', 'Zwölf');
 
-  (array_key_exists($rs_comments->rs_totalrows, $numbers))
-  ? $label_number = $numbers[$rs_comments->rs_totalrows]
-    : $label_number = $rs_comments->rs_totalrows;
 
-  ($rs_comments->rs_totalrows != 1)
-  ? $label_headline = 'Kommentare'
-    : $label_headline = 'Kommentar';
+    // count call for current post
+    // ---------------------------
+    $countCall = new DBO(...$db_access);
+    $countCall
+      ->_cols('calls')
+      ->_from('posts')
+      ->_where('ID = ?', $_GET['ID'])
+      ->fetch();
+
+    $updateCalls = array('calls' => $countCall->field('calls') + 1);
+    $countCall->update($updateCalls, 'posts', 'ID', $_GET['ID']);
+
+
+
+    // get comments for current (existing) post
+    // ----------------------------------------
+    $rs_comments = new DBO(...$db_access);
+    $rs_comments
+      ->_cols('ID, created, replyTo, input_name, input_comment')
+      ->_from('comments')
+      ->_where('articleID = ?', $_GET['ID'])
+      ->_and('online = ?', 1)
+      ->_orderby('created')
+      ->fetch();
+
+    $numbers = array('Noch keine', 'Ein', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn', 'Elf', 'Zwölf');
+
+    (array_key_exists($rs_comments->rs_totalrows, $numbers))
+    ? $label_number = $numbers[$rs_comments->rs_totalrows]
+      : $label_number = $rs_comments->rs_totalrows;
+
+    ($rs_comments->rs_totalrows != 1)
+    ? $label_headline = 'Kommentare'
+      : $label_headline = 'Kommentar';
+  }
 }
 ?>
 
@@ -231,7 +250,7 @@ if(isset($_GET['ID'])) {
 
           ?>
           <!-- comment -->
-          <div class="c-comment" data-id="<?php echo $rs_comments->field('ID'); ?>">
+          <div id="comment<?php echo $rs_comments->field('ID'); ?>" class="c-comment" data-id="<?php echo $rs_comments->field('ID'); ?>">
             <div class="c-comment__avatar">
               <svg class="c-comment__icon"><use xlink:href="images/icons.svg#icon-user"></use></svg>
             </div>

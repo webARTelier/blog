@@ -27,7 +27,7 @@ $rs_posts
   ->_cols('posts.ID, posts.created, posts.img, posts.headline, posts.abstract, categories.category')
   ->_from('posts')
   ->_leftjoin('categories', 'categories.ID = posts.category')
-  ->_where('posts.ID > ?', 0)
+  ->_where('posts.online = ?', 1)
   ->_orderby('created DESC')
   ->fetch();
 

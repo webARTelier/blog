@@ -137,7 +137,7 @@ include '_admin_html_head.php';
       <input class="c-input c-input--admin" name="img" value="<?php echo $rs_post->field('img'); ?>" placeholder="Bildname">
 
       <input class="c-input c-input--admin u-spaceTop js-date" name="created" value="<?php echo $rs_post->field('created'); ?>" placeholder="Datum/Uhrzeit">
-      <span class="c-setDate js-setDate">Timestamp</span>
+      <span class="c-setDate js-setDate">Timestamp NOW</span>
 
       <div class="c-post__headline">
         <input class="c-input c-input--admin" name="headline" value="<?php echo $rs_post->field('headline'); ?>" placeholder="Überschrift">
