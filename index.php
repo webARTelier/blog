@@ -87,7 +87,7 @@ $rs_posts
 
     <div class="c-post__time">
       <time datetime="<?php echo $rs_posts->field('created'); ?>"><?php echo date("d.m.Y", strtotime($rs_posts->field('created'))); ?></time>
-      | WEB<span class="u-color-primary">ART</span>ELIER
+      | Björn (web<span class="u-color-primary">art</span>elier)
     </div>
 
     <a class="c-post__headline c-post__headline--link" href="post.php?ID=<?php echo $rs_posts->field('ID'); ?>"><?php echo $rs_posts->field('headline'); ?></a>

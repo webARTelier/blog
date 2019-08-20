@@ -200,7 +200,7 @@ if(isset($_GET['ID'])) {
 
     <div class="c-post__time">
       <time datetime="<?php echo $rs_post->field('created'); ?>"><?php echo date("d.m.Y", strtotime($rs_post->field('created'))); ?></time>
-      | web<span class="u-color-primary">art</span>elier
+      | Björn (web<span class="u-color-primary">art</span>elier)
     </div>
 
     <h1 class="c-post__headline" ><?php echo $rs_post->field('headline'); ?></h1>
