@@ -97,7 +97,7 @@ $rs_comments_nav
 
         <!-- last posts -->
         <div class="c-nav__item">
-          <h2 class="c-nav__title">beliebteste artikel</h2>
+          <h2 class="c-nav__title">beliebteste posts</h2>
           <?php
 
           while(!$rs_posts_nav->EOF) {

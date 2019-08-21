@@ -79,9 +79,9 @@ $rs_posts
   <div class="c-post">
 
     <img class="c-post__image" src="images/<?php echo $rs_posts->field('img'); ?>_small.jpg"
-         srcset="images/<?php echo $rs_posts->field('img'); ?>_small.jpg 768w,
-                 images/<?php echo $rs_posts->field('img'); ?>_medium.jpg 1024w,
-                 images/<?php echo $rs_posts->field('img'); ?>_large.jpg 1200w"
+         srcset="images/<?php echo $rs_posts->field('img'); ?>_s.jpg 768w,
+                 images/<?php echo $rs_posts->field('img'); ?>_m.jpg 1024w,
+                 images/<?php echo $rs_posts->field('img'); ?>_l.jpg 1200w"
          sizes="(min-width: 990px) 68vw, 89vw"
          alt="<?php echo $rs_posts->field('headline'); ?>">
 
