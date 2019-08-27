@@ -1,3 +1,23 @@
+<?php
+
+include '../inc/config.inc.php';
+
+
+
+// get open comments
+// -----------------
+$rs_comments_nav = new DBO(...$db_access);
+$rs_comments_nav
+  ->_cols('ID, created, input_name, input_comment')
+  ->_from('comments')
+  ->_where('online = ?', 1)
+  ->_orderby('created ASC')
+  ->fetch();
+
+
+
+
+?>
 <div class="c-nav c-nav--admin">
   <div class="c-nav__scrollable">
 
@@ -24,6 +44,7 @@
         </a>
 
         <a class="c-nav__link c-nav__link--admin blog" href="admin_start.php">posts</a>
+        <a class="c-nav__link c-nav__link--admin comments" href="admin_comments.php">kommentare</a>
         <a class="c-nav__link c-nav__link--admin about" href="javascript:;">über mich</a>
       </div>
     </div>
@@ -36,27 +57,25 @@
       <div class="c-nav__items">
 
         <div class="c-nav__item">
-          <h2 class="c-nav__title c-nav__title--admin">letzte artikel</h2>
-          <a class="c-nav__link c-nav__link--admin" href="javascript:;">lorem ipsum</a>
-          <a class="c-nav__link c-nav__link--admin" href="javascript:;">dolor sit</a>
-        </div>
+          <h2 class="c-nav__title c-nav__title--admin">offene kommentare</h2>
 
-        <div class="c-nav__item">
-          <h2 class="c-nav__title c-nav__title--admin">letzte kommentare</h2>
-          <a class="c-nav__link c-nav__link--admin" href="javascript:;">lorem ipsum</a>
-          <a class="c-nav__link c-nav__link--admin" href="javascript:;">dolor sit</a>
-        </div>
+          <?php
+          while(!$rs_comments_nav->EOF) {
 
-        <div class="c-nav__item">
-          <h2 class="c-nav__title c-nav__title--admin">archiv</h2>
-          <a class="c-nav__link c-nav__link--admin" href="javascript:;">lorem ipsum</a>
-          <a class="c-nav__link c-nav__link--admin" href="javascript:;">dolor sit</a>
-        </div>
+            (strlen($rs_comments_nav->field('input_comment')) > 70)
+            ? $ellipsis = '&nbsp;…'
+              : $ellipsis = '';
 
-        <div class="c-nav__item">
-          <h2 class="c-nav__title c-nav__title--admin">kategorien</h2>
-          <a class="c-nav__link c-nav__link--admin" href="javascript:;">lorem ipsum</a>
-          <a class="c-nav__link c-nav__link--admin" href="javascript:;">dolor sit</a>
+            echo '<a class="c-nav__link c-nav__link--admin" ';
+            echo 'href="admin_comment.php?comment='.$rs_comments_nav->field('ID').'">';
+            echo '<strong>'.$rs_comments_nav->field('input_name').'</strong><br>';
+            echo mb_substr($rs_comments_nav->field('input_comment'), 0, 70).$ellipsis;
+            echo '</a>';
+
+            $rs_comments_nav->move_next();
+          }
+          ?>
+
         </div>
 
       </div>

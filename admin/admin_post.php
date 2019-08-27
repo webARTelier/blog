@@ -128,9 +128,9 @@ include '_admin_html_head.php';
     <div class="c-post">
 
       <img class="c-post__image" src="../images/<?php echo $rs_post->field('img'); ?>_small.jpg"
-           srcset="../images/<?php echo $rs_post->field('img'); ?>_s.jpg 768w,
-                   ../images/<?php echo $rs_post->field('img'); ?>_m.jpg 1024w,
-                   ../images/<?php echo $rs_post->field('img'); ?>_l.jpg 1200w"
+           srcset="../images/content/<?php echo $rs_post->field('img'); ?>_s.jpg 768w,
+                   ../images/content/<?php echo $rs_post->field('img'); ?>_m.jpg 1024w,
+                   ../images/content/<?php echo $rs_post->field('img'); ?>_l.jpg 1200w"
            sizes="(min-width: 990px) 68vw, 89vw"
            alt="<?php echo $rs_post->field('headline'); ?>">
 

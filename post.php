@@ -192,15 +192,15 @@ if(isset($_GET['ID'])) {
   <div class="c-post">
 
     <img class="c-post__image" src="images/<?php echo $rs_post->field('img'); ?>_small.jpg"
-         srcset="images/<?php echo $rs_post->field('img'); ?>_s.jpg 768w,
-                 images/<?php echo $rs_post->field('img'); ?>_m.jpg 1024w,
-                 images/<?php echo $rs_post->field('img'); ?>_l.jpg 1200w"
+         srcset="images/content/<?php echo $rs_post->field('img'); ?>_s.jpg 768w,
+                 images/content/<?php echo $rs_post->field('img'); ?>_m.jpg 1024w,
+                 images/content/<?php echo $rs_post->field('img'); ?>_l.jpg 1200w"
          sizes="(min-width: 990px) 68vw, 89vw"
          alt="<?php echo $rs_post->field('headline'); ?>">
 
     <div class="c-post__time">
       <time datetime="<?php echo $rs_post->field('created'); ?>"><?php echo date("d.m.Y", strtotime($rs_post->field('created'))); ?></time>
-      | Björn (web<span class="u-color-primary">art</span>elier)
+      | web<span class="u-color-primary">art</span>elier | Björn
     </div>
 
     <h1 class="c-post__headline" ><?php echo $rs_post->field('headline'); ?></h1>

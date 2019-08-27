@@ -79,15 +79,15 @@ $rs_posts
   <div class="c-post">
 
     <img class="c-post__image" src="images/<?php echo $rs_posts->field('img'); ?>_small.jpg"
-         srcset="images/<?php echo $rs_posts->field('img'); ?>_s.jpg 768w,
-                 images/<?php echo $rs_posts->field('img'); ?>_m.jpg 1024w,
-                 images/<?php echo $rs_posts->field('img'); ?>_l.jpg 1200w"
+         srcset="images/content/<?php echo $rs_posts->field('img'); ?>_s.jpg 768w,
+                 images/content/<?php echo $rs_posts->field('img'); ?>_m.jpg 1024w,
+                 images/content/<?php echo $rs_posts->field('img'); ?>_l.jpg 1200w"
          sizes="(min-width: 990px) 68vw, 89vw"
          alt="<?php echo $rs_posts->field('headline'); ?>">
 
     <div class="c-post__time">
       <time datetime="<?php echo $rs_posts->field('created'); ?>"><?php echo date("d.m.Y", strtotime($rs_posts->field('created'))); ?></time>
-      | Björn (web<span class="u-color-primary">art</span>elier)
+      | web<span class="u-color-primary">art</span>elier | Björn
     </div>
 
     <a class="c-post__headline c-post__headline--link" href="post.php?ID=<?php echo $rs_posts->field('ID'); ?>"><?php echo $rs_posts->field('headline'); ?></a>
