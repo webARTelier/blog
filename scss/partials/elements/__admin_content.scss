@@ -21,6 +21,20 @@
   &--1 {
     @include responsive-font(6vw, 36px, 80px);
   }
+
+
+
+  &--2 {
+    padding-bottom: 5%;
+
+    font-family: headline, sans-serif;
+    font-size: 34px;
+    letter-spacing: -1px;
+
+    @include vp-nav-desktop {
+      font-size: 52px;
+    }
+  }
 }
 
 
@@ -41,6 +55,7 @@
 
     &:hover {
       color: var(--color-primary);
+      text-decoration: underline;
     }
   }
 

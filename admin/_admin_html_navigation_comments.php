@@ -25,10 +25,10 @@ $rs_comments_nav
 
     <!-- tab navigation -->
     <div class="c-tabNav c-tabNav--admin">
-      <div class="c-tabNav__item c-tabNav__item--admin js-chooseTab is-active" data-tabtarget="#mainMenu">
+      <div class="c-tabNav__item c-tabNav__item--admin js-chooseTab" data-tabtarget="#mainMenu">
         <svg class="c-tabNav__icon c-tabNav__icon--admin"><use xlink:href="../images/icons.svg#icon-menu"></use></svg>
       </div>
-      <div class="c-tabNav__item c-tabNav__item--admin js-chooseTab" data-tabtarget="#asideMenu">
+      <div class="c-tabNav__item c-tabNav__item--admin js-chooseTab is-active" data-tabtarget="#asideMenu">
         <svg class="c-tabNav__icon  c-tabNav__icon--admin"><use xlink:href="../images/icons.svg#icon-bubble"></use></svg>
       </div>
     </div>
@@ -37,7 +37,7 @@ $rs_comments_nav
 
 
     <!-- tab content item -->
-    <div id="mainMenu" class="c-tab js-tabContent is-active">
+    <div id="mainMenu" class="c-tab js-tabContent">
       <div class="c-nav__items">
         <a class="c-logo" href="javascript:;">
           <div class="c-logo__admin">Admin</div>
@@ -52,7 +52,7 @@ $rs_comments_nav
 
 
     <!-- tab content item -->
-    <div id="asideMenu" class="c-tab js-tabContent">
+    <div id="asideMenu" class="c-tab js-tabContent is-active">
       <div class="c-nav__items">
 
         <div class="c-nav__item">

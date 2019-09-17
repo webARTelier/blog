@@ -84,8 +84,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       // prepare message
       // ---------------
       $_SESSION['modal'] = array(
-        'headline'    => 'Danke schön &#9786;',
-        'message'     => 'Dein Kommentar ist angekommen und wird schnellstmöglich freigeschaltet. Danke für dein Verständnis!'
+        'headline'    => 'Moment noch …',
+        'message'     => 'Vielen Dank! Dein Kommentar ist wohlbehalten angekommen. Da wir alle keinen Spam mögen, wird jeder Kommentar „von Hand“ freigeschaltet &ndash; natürlich so schnell wie möglich!<br><br>Vielen Dank für dein Verständnis!'
       );
     }
 
@@ -318,6 +318,12 @@ if(isset($_GET['ID'])) {
 
   </div>
   <!-- end post -->
+
+
+
+  <!-- link 'back to overview' -->
+  <a class="c-homelink" href="index.php">&#10094; zurück zur Übersicht</a>
+  <!-- end link 'back to overview' -->
 
 
 

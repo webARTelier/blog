@@ -10,7 +10,8 @@ $rs_comments_nav = new DBO(...$db_access);
 $rs_comments_nav
   ->_cols('ID, created, input_name, input_comment')
   ->_from('comments')
-  ->_where('online = ?', 0)
+  ->_where('online = ?', 1)
+  ->_and('articleID = ?', $_GET['ID'])
   ->_orderby('created ASC')
   ->fetch();
 
@@ -56,7 +57,7 @@ $rs_comments_nav
       <div class="c-nav__items">
 
         <div class="c-nav__item">
-          <h2 class="c-nav__title c-nav__title--admin">offene kommentare</h2>
+          <h2 class="c-nav__title c-nav__title--admin">kommentare</h2>
 
           <?php
           while(!$rs_comments_nav->EOF) {

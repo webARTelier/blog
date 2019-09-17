@@ -39,3 +39,28 @@
     text-decoration: none;
   }
 }
+
+
+
+// home link
+// ---------
+.c-homelink {
+  @include fixed(bottom 0 left 0 right 0);
+
+  z-index: var(--z-homelink);
+  padding: 0.5em 5%;
+  text-decoration: none;
+
+  color: tint($color-red, 75);
+  background-color: $color-red;
+
+  transition: all var(--anim-dur) var(--anim-ease);
+
+  @include vp-nav-desktop {
+    padding: 0.5em 0.5em 0.5em 26%;
+  }
+
+  &:hover {
+    color: white;
+  }
+}

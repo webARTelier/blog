@@ -118,7 +118,7 @@ $rs_posts
         <div class="c-post__abstract">
           <p><?php echo $rs_posts->field('abstract'); ?></p>
 
-          <a class="c-post__more" href="post.php?ID=<?php echo $rs_posts->field('ID'); ?>">weiterlesen →</a>
+          <a class="c-post__more" href="post.php?ID=<?php echo $rs_posts->field('ID'); ?>">weiterlesen &#10095;</a>
         </div>
 
       </div>

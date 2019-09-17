@@ -113,7 +113,7 @@ include '_admin_html_head.php';
 
 
 <!-- navigation -->
-<?php include '_admin_html_navigation.php'; ?>
+<?php include '_admin_html_navigation_post.php'; ?>
 <!-- end navigation -->
 
 

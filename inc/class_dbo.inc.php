@@ -250,7 +250,7 @@
 
     public function _leftjoin(string $table, string $on)
     {
-      $this->query_innerjoin .= ' INNER JOIN '.$table. ' ON '.$on;
+      $this->query_leftjoin .= ' LEFT JOIN '.$table. ' ON '.$on;
       return $this;
     }
 
