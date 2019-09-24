@@ -13,6 +13,18 @@ include '_html_head.php';
 
 
 
+// category selection
+// ------------------
+if(!isset($_SESSION['category'])) {
+  $_SESSION['category'] = '%';
+}
+
+if(isset($_GET['cat'])) {
+  $_SESSION['category'] = $_GET['cat'];
+}
+
+
+
 // get data from db
 // ----------------
 $rs_posts = new DBO(...$db_access);
@@ -28,6 +40,7 @@ $rs_posts
   ->_from('posts')
   ->_leftjoin('categories', 'categories.ID = posts.category')
   ->_where('posts.online = ?', 1)
+  ->_and('posts.category LIKE ?', $_SESSION['category'])
   ->_orderby('created DESC')
   ->fetch();
 
@@ -68,6 +81,7 @@ $rs_posts
       ->_cols('ID')
       ->_from('comments')
       ->_where('articleID = ?', $rs_posts->field('ID'))
+      ->_and('online = ?', 1)
       ->do_count();
 
     ($comments == 1)

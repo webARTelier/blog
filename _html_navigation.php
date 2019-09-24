@@ -66,8 +66,53 @@ $rs_comments_nav
           <img class="c-logo__img" src="images/logo_webartelier.svg" alt="webARTelier">
         </a>
 
-        <a class="c-nav__link home" href="index.php">home</a>
-        <a class="c-nav__link about"href="javascript:;">über mich</a>
+        <!-- main pages navigation -->
+        <div class="c-nav__item">
+
+          <a class="c-nav__link home" href="index.php">home</a>
+          <a class="c-nav__link about"href="javascript:;">über mich</a>
+
+        </div>
+        <!-- end main pages navigation -->
+
+        <!-- categories -->
+        <div class="c-nav__item">
+          <h2 class="c-nav__title">kategorien</h2>
+
+          <!-- tags -->
+          <div class="c-nav__tags">
+            <?php
+
+            $currentCategory = '';
+
+            if(isset($_SESSION['category'])) {
+              $currentCategory = $_SESSION['category'];
+            }
+
+            while(!$rs_categories_nav->EOF) {
+
+              $classActive = '';
+
+              if($rs_categories_nav->field('ID') == $currentCategory) {
+                $classActive = ' is-active';
+              }
+
+              echo '<a class="c-nav__tag'.$classActive.'" href="'.$_SERVER['PHP_SELF'].'?cat='.$rs_categories_nav->field('ID').'">';
+              echo $rs_categories_nav->field('category');
+              echo '</a>';
+
+              $rs_categories_nav->move_next();
+            }
+
+            ?>
+          </div>
+          <!-- end tags -->
+
+          <a class="c-nav__link u-spaceTop" href="index.php?cat=%">&rarr; alle anzeigen</a>
+
+        </div>
+        <!-- end categories -->
+
       </div>
     </div>
     <!-- end main navigation -->
@@ -77,23 +122,6 @@ $rs_comments_nav
     <!-- alternative navigation -->
     <div id="asideMenu" class="c-tab js-tabContent">
       <div class="c-nav__items">
-
-        <!-- categories -->
-        <div class="c-nav__item">
-          <h2 class="c-nav__title">kategorien</h2>
-          <?php
-
-          while(!$rs_categories_nav->EOF) {
-            echo '<a class="c-nav__link" href="categories.php?cat='.$rs_categories_nav->field('ID').'">';
-            echo $rs_categories_nav->field('category');
-            echo '</a>';
-
-            $rs_categories_nav->move_next();
-          }
-
-          ?>
-        </div>
-        <!-- end categories -->
 
         <!-- last posts -->
         <div class="c-nav__item">

@@ -115,6 +115,46 @@
       pointer-events: none;
     }
   }
+
+
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+
+
+  &__tag {
+    display: block;
+
+    margin-top: 0.3em;
+    margin-right: 0.3em;
+    padding: 0.3em 0.5em;
+
+    text-decoration: none;
+
+    color: $color-copy;
+    background-color: shade(white, 10);
+
+    transition: all var(--anim-dur) var(--anim-ease);
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      background-color: shade(white, 15);
+    }
+
+    &.is-active {
+      pointer-events: none;
+
+      color: white;
+      background-color: var(--color-primary);
+    }
+  }
 }
 
 
