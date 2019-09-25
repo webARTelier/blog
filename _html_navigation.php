@@ -105,10 +105,11 @@ $rs_comments_nav
             }
 
             ?>
+
+            <a class="c-nav__tag" href="index.php?cat=%">×</a>
+
           </div>
           <!-- end tags -->
-
-          <a class="c-nav__link u-spaceTop" href="index.php?cat=%">&rarr; alle anzeigen</a>
 
         </div>
         <!-- end categories -->
