@@ -70,7 +70,7 @@ $rs_comments_nav
         <div class="c-nav__item">
 
           <a class="c-nav__link home" href="index.php">home</a>
-          <a class="c-nav__link about"href="javascript:;">über mich</a>
+          <a class="c-nav__link about" href="javascript:;">über mich</a>
 
         </div>
         <!-- end main pages navigation -->
